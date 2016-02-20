@@ -1,27 +1,32 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <meta charset="UTF-8"></meta>
 
-<section class="box widget calendar">
+<section class="box widget weather">
     <header class="header">
-        <div class="titulo">Próximos Eventos</div>
-        <p>#{ciudadBean.nombreCiudad}</p>
-        <p>${ciudadBean.nombreCiudad}</p>
+        <div class="temp">#{ciudadBean.}&#176; </div>
+        <span class="icon-partlycloudy"></span>
     </header>
-    <article class="days">
-        <h:dataTable var="evento" value="#{ciudadBean.listaEventos}"> 
-            <br></br>
-                <h:link outcome="PrincipalCiudad" value="#{evento.nombreEvento}" class="inicio"/>
-                   
-                <br></br>
-                Fecha: #{evento.fecha}
-                <br></br>
-            ----
-            </h:dataTable>
+    <article>
+        <div class="fecha">#{ciudadBean.fecha}</div>
     </article>
+</section>
+
+<section class="box widget find">
+    <!-- <input type="submit" value="Guardar">
+    <input type="text" name="find" placeholder="Introduce tu busqueda" />
+    
+    <a href="ListadoCiudadesBuscar" class="btn btn-primary btn-large btn-block">Search</a>
+    </input>-->
+    <form action="${pageContext.request.contextPath}/ListadoCiudadesBuscar" method="post" acceptcharset="UTF-8" >
+    <input type="text" name="find" placeholder="Introduce tu busqueda" />
+    <input type="submit" value="Buscar" class="btn btn-primary btn-large btn-block">
+    </form>
+    
 </section>
 </html>
 
