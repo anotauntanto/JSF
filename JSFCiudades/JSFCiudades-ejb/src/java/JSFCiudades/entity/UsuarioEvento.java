@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package JSFCiudades.ejb;
+package JSFCiudades.entity;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -19,7 +19,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -27,28 +26,22 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author inftel08
  */
 @Entity
-@Table(name = "COMENTARIO_EVENTO")
+@Table(name = "USUARIO_EVENTO")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "ComentarioEvento.findAll", query = "SELECT c FROM ComentarioEvento c"),
-    @NamedQuery(name = "ComentarioEvento.findByIdComentario", query = "SELECT c FROM ComentarioEvento c WHERE c.idComentario = :idComentario"),
-    @NamedQuery(name = "ComentarioEvento.findByTexto", query = "SELECT c FROM ComentarioEvento c WHERE c.texto = :texto")})
-public class ComentarioEvento implements Serializable {
+    @NamedQuery(name = "UsuarioEvento.findAll", query = "SELECT u FROM UsuarioEvento u"),
+    @NamedQuery(name = "UsuarioEvento.findByIdUsuarioevento", query = "SELECT u FROM UsuarioEvento u WHERE u.idUsuarioevento = :idUsuarioevento")})
+public class UsuarioEvento implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @SequenceGenerator(name = "genSeqComEvento", sequenceName = "SEQ_IDCOMENTARIOEVENTO", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "genSeqComEvento")
+    @SequenceGenerator(name = "genSeqUsuarioEvento", sequenceName = "SEQ_IDUSUARIOEVENTO", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "genSeqUsuarioEvento")
 
     @Basic(optional = false)
     @NotNull
-    @Column(name = "ID_COMENTARIO")
-    private Integer idComentario;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 300)
-    @Column(name = "TEXTO")
-    private String texto;
+    @Column(name = "ID_USUARIOEVENTO")
+    private Integer idUsuarioevento;
     @JoinColumn(name = "ID_EVENTO", referencedColumnName = "ID_EVENTO")
     @ManyToOne(optional = false)
     private Evento idEvento;
@@ -56,32 +49,19 @@ public class ComentarioEvento implements Serializable {
     @ManyToOne(optional = false)
     private Usuario idUsuario;
 
-    public ComentarioEvento() {
+    public UsuarioEvento() {
     }
 
-    public ComentarioEvento(Integer idComentario) {
-        this.idComentario = idComentario;
+    public UsuarioEvento(Integer idUsuarioevento) {
+        this.idUsuarioevento = idUsuarioevento;
     }
 
-    public ComentarioEvento(Integer idComentario, String texto) {
-        this.idComentario = idComentario;
-        this.texto = texto;
+    public Integer getIdUsuarioevento() {
+        return idUsuarioevento;
     }
 
-    public Integer getIdComentario() {
-        return idComentario;
-    }
-
-    public void setIdComentario(Integer idComentario) {
-        this.idComentario = idComentario;
-    }
-
-    public String getTexto() {
-        return texto;
-    }
-
-    public void setTexto(String texto) {
-        this.texto = texto;
+    public void setIdUsuarioevento(Integer idUsuarioevento) {
+        this.idUsuarioevento = idUsuarioevento;
     }
 
     public Evento getIdEvento() {
@@ -103,18 +83,18 @@ public class ComentarioEvento implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idComentario != null ? idComentario.hashCode() : 0);
+        hash += (idUsuarioevento != null ? idUsuarioevento.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ComentarioEvento)) {
+        if (!(object instanceof UsuarioEvento)) {
             return false;
         }
-        ComentarioEvento other = (ComentarioEvento) object;
-        if ((this.idComentario == null && other.idComentario != null) || (this.idComentario != null && !this.idComentario.equals(other.idComentario))) {
+        UsuarioEvento other = (UsuarioEvento) object;
+        if ((this.idUsuarioevento == null && other.idUsuarioevento != null) || (this.idUsuarioevento != null && !this.idUsuarioevento.equals(other.idUsuarioevento))) {
             return false;
         }
         return true;
@@ -122,7 +102,7 @@ public class ComentarioEvento implements Serializable {
 
     @Override
     public String toString() {
-        return "JSFCiudades.ejb.ComentarioEvento[ idComentario=" + idComentario + " ]";
+        return "JSFCiudades.ejb.UsuarioEvento[ idUsuarioevento=" + idUsuarioevento + " ]";
     }
 
 }

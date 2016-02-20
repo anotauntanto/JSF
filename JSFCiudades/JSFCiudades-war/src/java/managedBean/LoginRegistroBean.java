@@ -5,8 +5,8 @@
  */
 package managedBean;
 
-import JSFCiudades.entity.UsuarioFacade;
-import JSFCiudades.ejb.Usuario;
+import JSFCiudades.ejb.UsuarioFacade;
+import JSFCiudades.entity.Usuario;
 import JSFCiudades.util.MD5Signature;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -27,6 +27,7 @@ public class LoginRegistroBean {
 
     private String username;
     private String passLogin;
+    private int idUsuario;
 
     private String passRegister1;
     private String passRegister2;
@@ -89,13 +90,21 @@ public class LoginRegistroBean {
         this.error = error;
     }
 
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int id) {
+        this.idUsuario = id;
+    }
+
     public String doLogin() {
 
         //verificar si existe una sesión iniciada
         if (this.sesion == false) { //si no existe una sesión previa
 
-            boolean exist = usuarioFacade.isLoginOK(username, passLogin);
-            if (exist) { //verificar si el login es correcto
+            idUsuario = usuarioFacade.isLoginOK(username, passLogin);
+            if (idUsuario > 0) { //verificar si el login es correcto
                 this.sesion = true;
                 return "PrincipalCiudad";
             } else {
@@ -125,23 +134,36 @@ public class LoginRegistroBean {
             } else {
 
                 this.sesion = true;
-                
+
                 Usuario user = new Usuario();
                 user.setNombreUsuario(username);
                 String passHuella = MD5Signature.generateMD5Signature(passRegister1);
                 user.setContrasena(passHuella);
                 usuarioFacade.create(user);
-                
+
                 return "PrincipalCiudad";
 
             }
 
         } else {
-            
+
             error = "Sesión ya iniciada";
             return "PrincipalCiudad";
-            
+
         }
+    }
+
+    public String doLogout() {
+
+        sesion = false;
+        username = "";
+        passLogin = "";
+        passRegister1 = "";
+        passRegister2 = "";
+        idUsuario = 0;
+        
+        return null;
+
     }
 
 }

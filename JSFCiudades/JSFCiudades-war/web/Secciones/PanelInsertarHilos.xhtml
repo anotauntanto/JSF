@@ -1,12 +1,49 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        Hello from Facelets
-    </h:body>
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+
+    <link rel="stylesheet prefetch" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    
+
+
+    <section class="box widget find" rendered="${loginRegistroBean.sesion == true}" >
+        <h:form>
+            <div class="input-container">
+                <h:outputLabel class="titulo"> Añadir pregunta </h:outputLabel><br></br><br></br>
+                <h:inputTextarea id="pregunta" cols="26" rows="5" class="letraTextArea" required="required" p:placeholder="Escriba pregunta" value="#{insertarHilosBean.textoPregunta}"></h:inputTextarea> <br></br><br></br>
+                <button class="btn btn-primary btn-large btn-block" jsf:action="#{insertarHilosBean.doGuardarPregunta}"><span>Enviar</span></button>
+                <br></br>
+            </div>
+        </h:form>
+    </section>
+
+
+    <section class="box widget find" rendered="${loginRegistroBean.sesion == true}" >
+        <h:form>
+            <h:outputLabel class="titulo"> Añadir evento </h:outputLabel><br></br><br></br>
+            <h:inputText value="#{insertarHilosBean.nombreEvento}" p:placeholder="Nombre del evento"/><br></br>
+            <h:inputText id="datepicker" styleClass="datepicker" p:placeholder="Fecha">
+                <f:convertDateTime pattern="d-M-yyyy"/>
+            </h:inputText><br></br>
+                         
+            <h:inputText value="#{insertarHilosBean.direccion}" p:placeholder="Dirección"/><br></br>
+            <h:inputTextarea value="#{insertarHilosBean.descripcion}" cols="26" rows="5" class="letraTextArea" required="required" p:placeholder="Descripción"/><br></br><br></br>
+            <button class="btn btn-primary btn-large btn-block" jsf:action="#{insertarHilosBean.doGuardarEvento}"><span>Enviar</span></button>
+            <br></br>
+        </h:form>      
+    </section>    
+    
+    <script>
+        $(function () {
+            $(".datepicker").datepicker();
+        });
+    </script>
 </html>
 
