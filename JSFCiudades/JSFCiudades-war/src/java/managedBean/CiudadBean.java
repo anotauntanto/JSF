@@ -37,6 +37,8 @@ public class CiudadBean {
 
     protected String nombreCiudad;
     protected int idCiudad;
+    protected String temperatura;
+    protected String fecha;
     protected List<Evento> listaEventos;
     protected List<Ciudad> listaCiudades;
     protected List<Usuario> listaUsuarios;
@@ -100,5 +102,23 @@ public class CiudadBean {
     public void setListaUsuarios(List<Usuario> listaUsuarios) {
         this.listaUsuarios = listaUsuarios;
     }
+
+    public String getTemperatura() {
+        return temperatura;
+    }
+
+    public void setTemperatura(String temperatura) {
+        this.temperatura = temperatura;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+    
+    
 
 }
