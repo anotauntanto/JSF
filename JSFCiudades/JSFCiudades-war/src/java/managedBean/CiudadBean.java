@@ -29,6 +29,7 @@ import net.aksingh.owmjapis.CurrentWeather;
 import net.aksingh.owmjapis.OpenWeatherMap;
 import org.json.JSONException;
 
+
 /**
  *
  * @author inftel06
@@ -52,6 +53,8 @@ public class CiudadBean {
 
     //protected int idPregunta;
     protected Pregunta pregunta;
+    
+    protected Evento evento;
     
     //@ManagedProperty(value="#{navegacionCiudadesBean}")
     //protected NavegacionCiudadesBean navegacionCiudadesBean;
@@ -158,6 +161,14 @@ public class CiudadBean {
     public void setNavegacionCiudadesBean(NavegacionCiudadesBean navegacionCiudadesBean) {
         this.navegacionCiudadesBean = navegacionCiudadesBean;
     }*/
+
+    public Evento getEvento() {
+        return evento;
+    }
+
+    public void setEvento(Evento evento) {
+        this.evento = evento;
+    }
     
     
    
@@ -165,6 +176,11 @@ public class CiudadBean {
         //this.idPregunta = idPregunta;
         this.pregunta = pregunta;
         return "ListadoPreguntasCiudad";
+    }
+    
+    public String doMostrarEventos(Evento evento){
+        this.evento = evento;
+        return "ListadoEventoCiudad";
     }
    
 }

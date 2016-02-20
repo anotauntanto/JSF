@@ -14,7 +14,9 @@
             <h:dataTable value="#{ciudadBean.ciudad.eventoCollection}" var="evento">
                 <h:column>
                     <br></br>
-                    <h:link outcome="PrincipalCiudad" value="#{evento.nombreEvento}"/>
+                    <h:form>
+                        <h:commandLink  action="#{ciudadBean.doMostrarEventos(evento)}" value="#{evento.nombreEvento}"/>
+                    </h:form>
                     <br></br>
                     <h:outputText value="Fecha: #{evento.fecha}"/>
                     <br></br>
