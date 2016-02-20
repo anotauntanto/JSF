@@ -28,13 +28,15 @@ public class CiudadBean {
     public CiudadBean() {
     }
 
-    public String getCiudad() {
+    public String getNombreCiudad() {
         return nombreCiudad;
     }
 
-    public void setCiudad(String nombreCiudad) {
+    public void setNombreCiudad(String nombreCiudad) {
         this.nombreCiudad = nombreCiudad;
     }
+
+
 
     public int getIdCiudad() {
         return idCiudad;

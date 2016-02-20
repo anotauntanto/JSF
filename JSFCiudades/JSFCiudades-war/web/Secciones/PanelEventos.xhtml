@@ -12,11 +12,13 @@
     </header>
     <article class="days">
         <h:dataTable value="#{ciudadBean.listaEventos}" var="evento">
-            <br>
+            
+            <br></br>
                 <h:link outcome="PrincpalCiudad" value="#{evento.nombreEvento}"/>
-            <br>
+            <br></br>
                 <h:outputText value="#{evento.fecha}"/>
-            <br>
+            <br></br>
+            
         </h:dataTable>
 
     </article>
