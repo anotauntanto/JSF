@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:head>
+        <ui:insert name="Head"/>
+    </h:head>
+
+    <h:body>  
+
+        <div class ="container">
+
+            <div class="grid_3">
+                <ui:insert name="PanelIcono"/>
+
+            </div>
+
+            <div class ="grid_8">
+                <ui:insert name="PanelCabecera"/>
+                <ui:insert name="PanelBotonesConfiguracion"/>
+
+                <div>
+                    <article class="box post">
+                        <section style="text-align: center">
+                            <fieldset class="no_border">
+                                <ui:insert name="PanelesConfiguracion"/>
+                            </fieldset>
+                        </section>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </div>
+    </h:body> 
+</html>
