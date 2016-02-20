@@ -8,10 +8,19 @@
 <section class="box widget calendar">
     <header class="header">
         <div class="titulo">Próximos Eventos</div>
+        <p>#{ciudadBean.nombreCiudad}</p>
         <p>${ciudadBean.nombreCiudad}</p>
     </header>
     <article class="days">
-        
+        <h:dataTable var="evento" value="#{ciudadBean.listaEventos}"> 
+            <br></br>
+                <h:link outcome="PrincipalCiudad" value="#{evento.nombreEvento}" class="inicio"/>
+                   
+                <br></br>
+                Fecha: #{evento.fecha}
+                <br></br>
+            ----
+            </h:dataTable>
     </article>
 </section>
 </html>
