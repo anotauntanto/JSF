@@ -6,27 +6,6 @@
 
     <meta charset="UTF-8"></meta>
 
-<section class="box widget weather">
-    <header class="header">
-        <div class="temp">#{ciudadBean.}&#176; </div>
-        <span class="icon-partlycloudy"></span>
-    </header>
-    <article>
-        <div class="fecha">#{ciudadBean.fecha}</div>
-    </article>
-</section>
 
-<section class="box widget find">
-    <!-- <input type="submit" value="Guardar">
-    <input type="text" name="find" placeholder="Introduce tu busqueda" />
-    
-    <a href="ListadoCiudadesBuscar" class="btn btn-primary btn-large btn-block">Search</a>
-    </input>-->
-    <form action="${pageContext.request.contextPath}/ListadoCiudadesBuscar" method="post" acceptcharset="UTF-8" >
-    <input type="text" name="find" placeholder="Introduce tu busqueda" />
-    <input type="submit" value="Buscar" class="btn btn-primary btn-large btn-block">
-    </form>
-    
-</section>
 </html>
 
