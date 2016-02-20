@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">  
+
+    <!-- Para cada evento -->
+    <h:dataTable value="#{navegacionEventosBean.listaEventos}" var="evento" width="100%">
+
+        <h:column >
+
+            <article class="box post" >
+
+                <fieldset class="hilos">
+                    <div class="details">
+                        <h2> 
+                            #{evento.nombreEvento}<br></br>
+                            Fecha: #{evento.fecha}
+                        </h2>
+                        <br></br>
+                        Ciudad: 
+                        <h:form>
+                            <h:commandLink action="#{navegacionEventosBean.doMostrarCiudad(evento.idCiudad)}" class="inicio"> #{evento.idCiudad.nombreCiudad} </h:commandLink> <br></br>
+                        </h:form>
+                        Dirección: #{evento.direccion}<br></br>
+                        <p class="letraciudad">#{evento.descripcion}</p>
+
+                    </div>
+                </fieldset>    
+            </article>
+
+        </h:column>
+
+    </h:dataTable>
+
+</html>

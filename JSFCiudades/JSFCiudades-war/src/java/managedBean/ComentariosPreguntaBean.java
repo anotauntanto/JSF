@@ -41,7 +41,8 @@ public class ComentariosPreguntaBean {
     
     @PostConstruct
     public void init () {
-        pregunta = preguntaFacade.find(ciudadBean.idPregunta);       
+        //pregunta = preguntaFacade.find(ciudadBean.idPregunta);  
+        pregunta = ciudadBean.pregunta;
     }
 
     public Pregunta getPregunta() {

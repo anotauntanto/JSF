@@ -11,6 +11,7 @@ import JSFCiudades.entity.Usuario;
 import JSFCiudades.ejb.CiudadFacade;
 import JSFCiudades.ejb.EventoFacade;
 import JSFCiudades.ejb.UsuarioFacade;
+import JSFCiudades.entity.Pregunta;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Date;
@@ -20,6 +21,7 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.imageio.ImageIO;
 import javax.imageio.stream.ImageOutputStream;
@@ -48,7 +50,12 @@ public class CiudadBean {
     protected float temperatura;
     protected String fecha;
 
-    protected int idPregunta;
+    //protected int idPregunta;
+    protected Pregunta pregunta;
+    
+    //@ManagedProperty(value="#{navegacionCiudadesBean}")
+    //protected NavegacionCiudadesBean navegacionCiudadesBean;
+    
     /**
      * Creates a new instance of CiudadBean
      */
@@ -59,7 +66,12 @@ public class CiudadBean {
     @PostConstruct
     public void init() {
 
-        this.ciudad = ciudadFacade.getCiudad(0);
+        //if (navegacionCiudadesBean.ciudad == null) {
+           this.ciudad = ciudadFacade.getCiudad(0); 
+        //} else {
+        //    this.ciudad = navegacionCiudadesBean.ciudad;
+        //}
+        
 
         try {
             image = ImageIO.createImageOutputStream(this.ciudad.getFoto());
@@ -121,17 +133,37 @@ public class CiudadBean {
         this.image = image;
     }
 
-    public int getIdPregunta() {
+    /*public int getIdPregunta() {
         return idPregunta;
     }
 
     public void setIdPregunta(int idPregunta) {
         this.idPregunta = idPregunta;
+    }*/
+
+    
+    public Pregunta getPregunta() {
+        return pregunta;
     }
+
+    public void setPregunta(Pregunta pregunta) {
+        this.pregunta = pregunta;
+    }
+
+    /*
+    public NavegacionCiudadesBean getNavegacionCiudadesBean() {
+        return navegacionCiudadesBean;
+    }
+
+    public void setNavegacionCiudadesBean(NavegacionCiudadesBean navegacionCiudadesBean) {
+        this.navegacionCiudadesBean = navegacionCiudadesBean;
+    }*/
     
     
-    public String doMostrarComentarios(int idPregunta) {
-        this.idPregunta = idPregunta;
+   
+    public String doMostrarComentarios(Pregunta pregunta) {
+        //this.idPregunta = idPregunta;
+        this.pregunta = pregunta;
         return "ListadoPreguntasCiudad";
     }
    

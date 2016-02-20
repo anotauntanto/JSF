@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:head>
+        <ui:insert name="Head"/>
+    </h:head>
+
+    <h:body>  
+
+        <div class ="container">
+
+            <div class="grid_3">
+                <ui:insert name="PanelIcono"/>
+            </div>
+
+            <div class ="grid_8">
+                <ui:insert name="PanelCabecera"/>
+                
+                <article class="box post">
+                    
+                    <fieldset class="hilos">
+                        
+                        <ui:insert name="PanelNavegacion"/>                   
+                    </fieldset>
+                    
+                </article>
+
+                
+                    <ui:insert name="PanelListar"/>
+            
+               
+            </div>
+
+        </div>
+        
+    </h:body> 
+</html>
