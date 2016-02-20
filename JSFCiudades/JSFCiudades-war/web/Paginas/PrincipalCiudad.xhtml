@@ -1,14 +1,33 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-       <title>Foro ciudades</title>
-       <!-- Hay que añadir el head.jsp-->
-      
-    </h:head>
-    <h:body>
-        Hello from Facelets
-    </h:body>
-</html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/Plantillas/PrincipalLayout.xhtml">
 
+    <ui:define name="Head">
+        <ui:include src="/Secciones/Head.xhtml"/>
+    </ui:define>
+
+    <ui:define name="PanelIcono">
+        <ui:include src="/Secciones/PanelIcono.xhtml"/>
+    </ui:define>
+
+    <ui:define name="PanelTiempoBuscar">
+        <ui:include src="/Secciones/PanelTiempoBuscar.xhtml"/>
+    </ui:define>
+
+    <ui:define name="PanelCabecera">
+        <ui:include src="/Secciones/PanelCabecera.xhtml"/>
+    </ui:define>
+
+    <ui:define name="PanelCiudad">
+        <ui:include src="/Secciones/PanelCiudad.xhtml"/>
+    </ui:define>
+
+    <ui:define name="PanelEventos">
+        <ui:include src="/Secciones/PanelEventos.xhtml"/>
+    </ui:define>
+    
+    <ui:define name="PanelInsertarHilos">
+        <ui:include src="/Secciones/PanelInsertarHilos.xhtml"/>
+    </ui:define>
+
+</ui:composition>
