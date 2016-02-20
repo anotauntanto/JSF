@@ -2,11 +2,105 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        Hello from Facelets
-    </h:body>
+
+    <nav class="box nav">
+        <br/>
+        <h:outputText value="Sesión iniciada como #{loginRegistroBean.username}" rendered="#{loginRegistroBean.sesion == true}" class="username"/>
+        <br/>
+
+        <ul>
+
+            <li>
+
+                <h:link outcome="PrincipalCiudad">
+
+                    <h:outputText class="icon-home"/>
+                    <br/>
+                    <h:outputText value="Inicio" class="title"/>
+
+                </h:link>
+
+            </li>
+
+            <h:panelGroup rendered="#{loginRegistroBean.idUsuario == 1}">
+
+                <li>
+
+                    <h:link outcome="Configuracion">
+
+                        <h:outputText class="icon-cog"/>
+                        <br/>
+                        <h:outputText value="Configuracion" class="title"/>
+
+                    </h:link>
+
+                </li>
+
+            </h:panelGroup>
+
+            <li>
+                <h:link outcome="ListarCiudades">
+
+                    <h:outputText class="icon-bubble"/>
+                    <br/>
+                    <h:outputText value="Listar ciudades" class="title"/>
+
+                </h:link>
+
+            </li>
+
+            <li>
+                <h:link outcome="ListarEventos">
+
+                    <h:outputText class="icon-bubble"/>
+                    <br/>
+                    <h:outputText value="Listar eventos" class="title"/>
+
+                </h:link>
+
+            </li>
+
+            <h:panelGroup rendered="#{loginRegistroBean.sesion == true}">
+
+                <li>
+
+                    <h:form>
+
+                        <h:commandLink action ="#{loginRegistroBean.doLogout()}" >
+
+                            <h:outputText class="icon-cog"/>
+                            <br/>
+                            <h:outputText value="Cerrar sesión" class="title"/>
+
+                        </h:commandLink>
+
+                    </h:form>
+
+                </li>
+
+            </h:panelGroup>
+
+            <h:panelGroup rendered="#{loginRegistroBean.sesion == false}">
+
+                <li>
+
+                    <h:link outcome="LoginRegistro" >
+
+                        <h:outputText class="icon-arrow-right"/>
+                        <br/>
+                        <h:outputText value="Iniciar sesión" class="title"/>
+
+                    </h:link>
+
+                </li>
+
+            </h:panelGroup>
+
+
+        </ul>
+
+    </nav>
+
+
 </html>
 

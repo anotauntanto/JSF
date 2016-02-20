@@ -31,10 +31,10 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
         super(Usuario.class);
     }
     
-        public boolean isLoginOK (String username, String password) {
+        public int isLoginOK (String username, String password) {
 
-        boolean existe = false;
         Usuario u;
+        int id = 0;
         
         try {
             Query q = em.createQuery("SELECT u FROM Usuario u WHERE u.nombreUsuario = ?1", Usuario.class).setParameter(1, username);
@@ -42,14 +42,14 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
 
             String huella = MD5Signature.generateMD5Signature(password);
             if (u.getContrasena().equals(huella)) {
-                existe = true;
+                id = u.getIdUsuario();
             }
 
         } catch (NoResultException e) {
-            existe = false;
+            id = -1;
         }
 
-        return existe;
+        return id;
 
     }
     
