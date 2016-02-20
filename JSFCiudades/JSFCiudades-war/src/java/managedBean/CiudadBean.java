@@ -54,9 +54,9 @@ public class CiudadBean {
     public void init(){
         this. nombreCiudad="Sevilla, España";
        this.idCiudad = 155;
-        //this.listaEventos = this.eventoFacade.findAll();
+        this.listaEventos = this.eventoFacade.findAll();
         //this.listaCiudad = this.ciudadFacade.findAll();
-       this.listaUsuarios = this.usuarioFacade.findAll();
+       //this.listaUsuarios = this.usuarioFacade.findAll();
        
        
     }
