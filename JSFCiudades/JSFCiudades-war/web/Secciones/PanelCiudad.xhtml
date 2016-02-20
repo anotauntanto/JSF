@@ -26,11 +26,9 @@
             <h:column>
                 <fieldset class="hilos">
 
-                    <h:link outcome="ListadoPreguntasCiudad" class="enlace">
-
-                        <h:outputText value="#{pregunta.texto}"/>
-
-                    </h:link>
+                    <h:form>
+                        <h:commandLink action ="#{ciudadBean.doMostrarComentarios(pregunta.idPregunta)}" class="enlace" value="#{pregunta.texto}"/>
+                    </h:form>
 
                 </fieldset>
                 <br></br>

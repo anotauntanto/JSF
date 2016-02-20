@@ -48,6 +48,7 @@ public class CiudadBean {
     protected float temperatura;
     protected String fecha;
 
+    protected int idPregunta;
     /**
      * Creates a new instance of CiudadBean
      */
@@ -118,6 +119,20 @@ public class CiudadBean {
 
     public void setImage(ImageOutputStream image) {
         this.image = image;
+    }
+
+    public int getIdPregunta() {
+        return idPregunta;
+    }
+
+    public void setIdPregunta(int idPregunta) {
+        this.idPregunta = idPregunta;
+    }
+    
+    
+    public String doMostrarComentarios(int idPregunta) {
+        this.idPregunta = idPregunta;
+        return "ListadoPreguntasCiudad";
     }
    
 }
