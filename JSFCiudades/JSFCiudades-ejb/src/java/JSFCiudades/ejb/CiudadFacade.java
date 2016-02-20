@@ -9,6 +9,7 @@ import JSFCiudades.entity.Ciudad;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -16,6 +17,7 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class CiudadFacade extends AbstractFacade<Ciudad> {
+
     @PersistenceContext(unitName = "JSFCiudades-ejbPU")
     private EntityManager em;
 
@@ -27,5 +29,22 @@ public class CiudadFacade extends AbstractFacade<Ciudad> {
     public CiudadFacade() {
         super(Ciudad.class);
     }
-    
+
+    public Ciudad getCiudad(int idCiudad) {
+        
+        if (idCiudad == 0) {
+            int newIdCiudad = 0;
+
+            Query q = em.createQuery("select max(c.idCiudad) from Ciudad c", Ciudad.class);
+
+            newIdCiudad = (int) q.getSingleResult();
+            //System.out.println(newIdCiudad);
+
+            return find(newIdCiudad);
+
+        } else {
+            return find(idCiudad);
+        }
+    }
+
 }
