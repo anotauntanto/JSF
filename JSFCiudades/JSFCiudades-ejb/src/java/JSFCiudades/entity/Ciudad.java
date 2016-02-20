@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package JSFCiudades.ejb;
+package JSFCiudades.entity;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -57,7 +57,7 @@ public class Ciudad implements Serializable {
     @NotNull
     @Lob
     @Column(name = "FOTO")
-    private Serializable foto;
+    private byte[] foto;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 900)
@@ -75,7 +75,7 @@ public class Ciudad implements Serializable {
         this.idCiudad = idCiudad;
     }
 
-    public Ciudad(Integer idCiudad, String nombreCiudad, Serializable foto, String descripcion) {
+    public Ciudad(Integer idCiudad, String nombreCiudad, byte[]  foto, String descripcion) {
         this.idCiudad = idCiudad;
         this.nombreCiudad = nombreCiudad;
         this.foto = foto;
@@ -98,11 +98,11 @@ public class Ciudad implements Serializable {
         this.nombreCiudad = nombreCiudad;
     }
 
-    public Serializable getFoto() {
+    public byte[]  getFoto() {
         return foto;
     }
 
-    public void setFoto(Serializable foto) {
+    public void setFoto(byte[] foto) {
         this.foto = foto;
     }
 

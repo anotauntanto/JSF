@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package JSFCiudades.entity;
+package JSFCiudades.ejb;
 
-import JSFCiudades.ejb.UsuarioEvento;
+import JSFCiudades.entity.Ciudad;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author inftel08
  */
 @Stateless
-public class UsuarioEventoFacade extends AbstractFacade<UsuarioEvento> {
+public class CiudadFacade extends AbstractFacade<Ciudad> {
     @PersistenceContext(unitName = "JSFCiudades-ejbPU")
     private EntityManager em;
 
@@ -24,8 +24,8 @@ public class UsuarioEventoFacade extends AbstractFacade<UsuarioEvento> {
         return em;
     }
 
-    public UsuarioEventoFacade() {
-        super(UsuarioEvento.class);
+    public CiudadFacade() {
+        super(Ciudad.class);
     }
     
 }

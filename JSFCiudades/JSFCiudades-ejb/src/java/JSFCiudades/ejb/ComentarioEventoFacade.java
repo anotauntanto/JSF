@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package JSFCiudades.entity;
+package JSFCiudades.ejb;
 
-import JSFCiudades.ejb.ComentarioPregunta;
+import JSFCiudades.entity.ComentarioEvento;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author inftel08
  */
 @Stateless
-public class ComentarioPreguntaFacade extends AbstractFacade<ComentarioPregunta> {
+public class ComentarioEventoFacade extends AbstractFacade<ComentarioEvento> {
     @PersistenceContext(unitName = "JSFCiudades-ejbPU")
     private EntityManager em;
 
@@ -24,8 +24,8 @@ public class ComentarioPreguntaFacade extends AbstractFacade<ComentarioPregunta>
         return em;
     }
 
-    public ComentarioPreguntaFacade() {
-        super(ComentarioPregunta.class);
+    public ComentarioEventoFacade() {
+        super(ComentarioEvento.class);
     }
     
 }

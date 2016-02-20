@@ -5,8 +5,8 @@
  */
 package managedBean;
 
-import JSFCiudades.entity.EventoFacade;
-import JSFCiudades.entity.PreguntaFacade;
+import JSFCiudades.ejb.EventoFacade;
+import JSFCiudades.ejb.PreguntaFacade;
 import java.util.Date;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;

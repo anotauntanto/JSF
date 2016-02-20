@@ -5,8 +5,8 @@
  */
 package managedBean;
 
-import JSFCiudades.entity.UsuarioFacade;
-import JSFCiudades.ejb.Usuario;
+import JSFCiudades.ejb.UsuarioFacade;
+import JSFCiudades.entity.Usuario;
 import JSFCiudades.util.MD5Signature;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;

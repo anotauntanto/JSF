@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package JSFCiudades.entity;
+package JSFCiudades.ejb;
 
-import JSFCiudades.ejb.Usuario;
+import JSFCiudades.entity.Usuario;
 import JSFCiudades.util.MD5Signature;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

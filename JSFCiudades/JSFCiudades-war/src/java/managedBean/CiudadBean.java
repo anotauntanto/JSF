@@ -5,12 +5,12 @@
  */
 package managedBean;
 
-import JSFCiudades.ejb.Ciudad;
-import JSFCiudades.ejb.Evento;
-import JSFCiudades.ejb.Usuario;
-import JSFCiudades.entity.CiudadFacade;
-import JSFCiudades.entity.EventoFacade;
-import JSFCiudades.entity.UsuarioFacade;
+import JSFCiudades.entity.Ciudad;
+import JSFCiudades.entity.Evento;
+import JSFCiudades.entity.Usuario;
+import JSFCiudades.ejb.CiudadFacade;
+import JSFCiudades.ejb.EventoFacade;
+import JSFCiudades.ejb.UsuarioFacade;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
