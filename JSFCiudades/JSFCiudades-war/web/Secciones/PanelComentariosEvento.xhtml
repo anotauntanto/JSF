@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+
+
+    <p>Evento en #{ciudadBean.ciudad.nombreCiudad}</p>
+
+    <article class="box post">
+        <fieldset class="hilos">
+            <div class="campo-clave">Usuario : </div> 
+            <div class="campo-valor">#{comentariosEventoBean.evento.idUsuario.nombreUsuario}</div>
+
+            <div class="campo-clave">Evento :</div> 
+            <div class="campo-valor">#{comentariosEventoBean.evento.nombreEvento}</div>
+            <div class="campo-clave">Fecha :</div> 
+            <div class="campo-valor">#{comentariosEventoBean.evento.fecha}</div>
+            <div class="campo-clave">Descripción :</div> 
+            <div class="campo-valor">#{comentariosEventoBean.evento.descripcion}</div>
+            <div class="campo-clave">Dirección :</div> 
+            <div class="campo-valor">#{comentariosEventoBean.evento.direccion}</div>
+            <h:form>
+                <h:commandLink action="#{comentariosEventoBean.doAsistir()}" value="Asistir"/>
+            </h:form>
+            <h:outputText value="Asistentes: #{comentariosEventoBean.obtenerAsistentes()}"/>
+        </fieldset>
+    </article>
+
+    <article class="box post">
+
+        <h:dataTable value="#{comentariosEventoBean.evento.comentarioEventoCollection}" var="comentario">
+
+            <h:column>
+
+                <fieldset class="hilos">
+                    <div class="campo-clave">Usuario :</div> <div class="campo-valor">#{comentario.idUsuario.nombreUsuario}</div>
+                    <div class="campo-clave">Comentario :</div> <div class="campo-valor">#{comentario.texto}</div>
+
+                </fieldset>
+
+            </h:column>
+
+        </h:dataTable>
+
+    </article>     
+</html>
+

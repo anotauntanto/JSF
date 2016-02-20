@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <p class="ciudad">Preguntas sobre #{ciudadBean.ciudad.nombreCiudad}</p>
+
+    <article class="box post">
+        <fieldset class="hilos">
+            <div class="campo-clave">Usuario :</div> 
+            <div class="campo-valor">#{comentariosPreguntaBean.pregunta.idUsuario.nombreUsuario}</div>
+
+            <div class="campo-clave">Pregunta :</div> 
+            <div class="campo-valor">#{comentariosPreguntaBean.pregunta.texto}</div>
+        </fieldset>
+    </article>
+
+    <article class="box post">
+
+        <h:dataTable value="#{comentariosPreguntaBean.pregunta.comentarioPreguntaCollection}" var="comentario">
+
+            <h:column>
+
+                <fieldset class="hilos">
+                    <div class="campo-clave">Usuario :</div> <div class="campo-valor">#{comentario.idUsuario.nombreUsuario}</div>
+                    <div class="campo-clave">Respuesta :</div> <div class="campo-valor">#{comentario.texto}</div>
+
+                </fieldset>
+
+            </h:column>
+
+        </h:dataTable>
+
+    </article>     
+</html>
+

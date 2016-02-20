@@ -1,12 +1,41 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        Hello from Facelets
-    </h:body>
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <article class="box post">
+
+        <div class="image">
+            <h:graphicImage value="#{ciudadBean.image}"/>       
+        </div>
+
+        <div class="details">
+            <h2> <h:outputText value="#{ciudadBean.ciudad.nombreCiudad}"/></h2>
+            <p class="letraciudad"> <h:outputText value="#{ciudadBean.ciudad.descripcion}"/></p>
+        </div>
+
+    </article>
+
+    <article class="box post">
+
+        <div class="ciudad"> <h:outputText value="Preguntas sobre #{ciudadBean.ciudad.nombreCiudad}"/> </div><br></br>
+
+        <h:dataTable value="#{ciudadBean.ciudad.preguntaCollection}" var="pregunta">
+            <h:column>
+                <fieldset class="hilos">
+
+                    <h:form>
+                        <h:commandLink action ="#{ciudadBean.doMostrarComentarios(pregunta)}" class="enlace" value="#{pregunta.texto}"/>
+                    </h:form>
+
+                </fieldset>
+                <br></br>
+
+            </h:column>
+        </h:dataTable>
+
+    </article>
 </html>
 
