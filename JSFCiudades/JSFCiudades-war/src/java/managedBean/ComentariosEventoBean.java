@@ -7,30 +7,44 @@ package managedBean;
 
 import JSFCiudades.ejb.ComentarioEventoFacade;
 import JSFCiudades.ejb.EventoFacade;
+import JSFCiudades.ejb.UsuarioEventoFacade;
 import JSFCiudades.entity.Evento;
+import java.awt.geom.Point2D;
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
+import javax.management.Query;
+import maps.java.Geocoding;
 
 /**
  *
  * @author inftel06
  */
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class ComentariosEventoBean {
+    @EJB
+    private UsuarioEventoFacade usuarioEventoFacade;
     @EJB
     private ComentarioEventoFacade comentarioEventoFacade;
     @EJB
     private EventoFacade eventoFacade;
     
     
+    
     protected Evento evento;
     
     @ManagedProperty(value="#{ciudadBean}")
     protected CiudadBean ciudadBean;
+    @ManagedProperty(value="#{loginRegistroBean}")
+    protected LoginRegistroBean loginRegistroBean;
+    
+    
+    protected Point2D.Double resultadoCD;
     
     /**
      * Creates a new instance of ComentariosEventoBean
@@ -38,7 +52,7 @@ public class ComentariosEventoBean {
     public ComentariosEventoBean() {
     }
     
-        @PostConstruct
+    @PostConstruct
     public void init () {
         //pregunta = preguntaFacade.find(ciudadBean.idPregunta);  
         evento = ciudadBean.evento;
@@ -59,14 +73,49 @@ public class ComentariosEventoBean {
     public void setCiudadBean(CiudadBean ciudadBean) {
         this.ciudadBean = ciudadBean;
     }
+
+    public Point2D.Double getResultadoCD() {
+        return resultadoCD;
+    }
+
+    public void setResultadoCD(Point2D.Double resultadoCD) {
+        this.resultadoCD = resultadoCD;
+    }
+
+    public LoginRegistroBean getLoginRegistroBean() {
+        return loginRegistroBean;
+    }
+
+    public void setLoginRegistroBean(LoginRegistroBean loginRegistroBean) {
+        this.loginRegistroBean = loginRegistroBean;
+    }
+    
+    
     
     public String doAsistir(){
-       
-        return null;
+       if (!usuarioEventoFacade.exitsUsuarioEvento(evento, loginRegistroBean.getIdUsuario())){
+           usuarioEventoFacade.insertAsistir(evento, loginRegistroBean.getIdUsuario());
+       }
+        return "ListadoEventoCiudad";
     }
     
-    public int obtenerAsistentes(){
-        return 0;
+    public int obtenerAsistentes(Evento evento){
+
+        return usuarioEventoFacade.obtenerAsistentes(evento);
+        
+    }
+
+    public String doVerMapa(Evento evento) throws UnsupportedEncodingException, MalformedURLException{
+        Geocoding ObjGeocod = new Geocoding();
+        //resultadoCD = ObjGeocod.getCoordinates(evento.getIdCiudad().getNombreCiudad()+ ", " + evento.getDireccion());
+        resultadoCD = ObjGeocod.getCoordinates("Sevilla, España, C/ Virgen de Lujan, 8");
+        System.out.println("Coordenadas: "+ resultadoCD.x + " " + resultadoCD.y);
+        
+        return "VerMapa"; 
+        
     }
     
+    public String doVolver(){
+        return "ListadoEventoCiudad";
+    }
 }

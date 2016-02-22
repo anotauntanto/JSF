@@ -39,7 +39,7 @@ import org.primefaces.model.StreamedContent;
  * @author inftel06
  */
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class CiudadBean {
 
     @EJB
