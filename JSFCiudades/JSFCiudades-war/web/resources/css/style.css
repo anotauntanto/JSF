@@ -52,6 +52,7 @@ p {
 
 .letraTextArea {
      font-size: 0.8em;
+     width: calc(100%);
 }
 
 .fecha {

@@ -27,11 +27,12 @@
 
 
 
-        <section class="box widget find" >
+        <section class="box widget find">
             <h:form>
                 <h:outputLabel class="titulo"> Añadir evento </h:outputLabel><br></br><br></br>
                 <h:inputText value="#{insertarHilosBean.evento.nombreEvento}" p:placeholder="Nombre del evento"/><br></br>
-                <h:inputText id="datepicker" styleClass="datepicker" p:placeholder="Fecha" value="#{insertarHilosBean.fecha}">
+                <h:inputText id="datepicker" styleClass="datepicker" p:placeholder="Fecha" value="#{insertarHilosBean.evento.fecha}">
+                    <f:convertDateTime type="date" pattern="MM/dd/yyyy"/>
                 </h:inputText><br></br>
 
                 <h:inputText value="#{insertarHilosBean.evento.direccion}" p:placeholder="Dirección"/><br></br>

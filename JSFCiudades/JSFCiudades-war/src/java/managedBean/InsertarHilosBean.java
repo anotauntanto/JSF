@@ -38,7 +38,6 @@ public class InsertarHilosBean {
 
     protected Pregunta pregunta;
     protected Evento evento;
-    protected String fecha;
 
     @ManagedProperty(value = "#{ciudadBean}")
     protected CiudadBean ciudadBean;
@@ -57,7 +56,6 @@ public class InsertarHilosBean {
         //pregunta = preguntaFacade.find(ciudadBean.idPregunta);  
         pregunta = new Pregunta();
         evento = new Evento();
-        System.out.println("yujuuuu");
     }
 
     public Pregunta getPregunta() {
@@ -92,14 +90,6 @@ public class InsertarHilosBean {
         this.loginRegistroBean = loginRegistroBean;
     }
 
-    public String getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
-
     public String doGuardarPregunta() {
 
         pregunta.setIdCiudad(ciudadBean.ciudad);
@@ -113,20 +103,7 @@ public class InsertarHilosBean {
 
         evento.setIdCiudad(ciudadBean.ciudad);
         evento.setIdUsuario(loginRegistroBean.usuario);
-
-
-        String[] trozosFecha = this.fecha.split("/");
-        String miFecha = trozosFecha[1] + "/" + trozosFecha[0] + "/" + trozosFecha[2];
-
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        try {
-            evento.setFecha(formato.parse(miFecha));
-        } catch (ParseException ex) {
-            Logger.getLogger(InsertarHilosBean.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
         eventoFacade.create(evento);
-        fecha="";
         evento = new Evento();
         return null;
     }
