@@ -12,18 +12,20 @@
             <div class="campo-clave">Usuario : </div> 
             <div class="campo-valor">#{comentariosEventoBean.evento.idUsuario.nombreUsuario}</div>
 
-            <div class="campo-clave">Evento :</div> 
+            <div class="campo-clave">Evento: </div> 
             <div class="campo-valor">#{comentariosEventoBean.evento.nombreEvento}</div>
-            <div class="campo-clave">Fecha :</div> 
+            <div class="campo-clave">Fecha: </div> 
             <div class="campo-valor">#{comentariosEventoBean.evento.fecha}</div>
-            <div class="campo-clave">Descripción :</div> 
+            <div class="campo-clave">Descripción: </div> 
             <div class="campo-valor">#{comentariosEventoBean.evento.descripcion}</div>
-            <div class="campo-clave">Dirección :</div> 
-            <div class="campo-valor">#{comentariosEventoBean.evento.direccion}</div>
-            <h:form>
-                <h:commandLink action="#{comentariosEventoBean.doAsistir()}" value="Asistir"/>
+            <div class="campo-clave">Dirección: </div> 
+            <div class="campo-valor"><h:form><h:commandLink action="#{comentariosEventoBean.doVerMapa(comentariosEventoBean.evento)}" 
+                                                    value="#{comentariosEventoBean.evento.direccion}"/></h:form>
+            </div>
+            <h:form >
+                <h:commandButton action="#{comentariosEventoBean.doAsistir()}" value="Asistir" rendered="#{loginRegistroBean.sesion==true}"/>
             </h:form>
-            <h:outputText value="Asistentes: #{comentariosEventoBean.obtenerAsistentes()}"/>
+            <h:outputText value="Asistentes: #{comentariosEventoBean.obtenerAsistentes(comentariosEventoBean.evento)}"/>
         </fieldset>
     </article>
 
