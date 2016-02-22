@@ -9,18 +9,23 @@ import JSFCiudades.entity.Ciudad;
 import JSFCiudades.entity.Evento;
 import JSFCiudades.entity.Usuario;
 import JSFCiudades.ejb.CiudadFacade;
+import JSFCiudades.ejb.ComentarioPreguntaFacade;
 import JSFCiudades.ejb.EventoFacade;
+import JSFCiudades.ejb.PreguntaFacade;
 import JSFCiudades.ejb.UsuarioFacade;
+import JSFCiudades.entity.ComentarioPregunta;
 import JSFCiudades.entity.Pregunta;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
@@ -40,22 +45,29 @@ import org.primefaces.model.StreamedContent;
 @ManagedBean
 @SessionScoped
 public class CiudadBean {
-
+    @EJB
+    private ComentarioPreguntaFacade comentarioPreguntaFacade;
+    @EJB
+    private PreguntaFacade preguntaFacade;
     @EJB
     private UsuarioFacade usuarioFacade;
     @EJB
     private EventoFacade eventoFacade;
     @EJB
     private CiudadFacade ciudadFacade;
+    
 
     protected Ciudad ciudad;
     protected float temperatura;
     protected String fecha;
-
-    protected Pregunta pregunta;
-
-    protected Evento evento;
     protected StreamedContent imagen;
+ 
+    protected Pregunta pregunta;
+    protected Evento evento;
+      
+    protected List<Pregunta> listaPreguntas;
+    protected List<Evento> listaEventos;
+    protected List<ComentarioPregunta> listaComentarioPreguntas;
 
 
     /**
@@ -67,6 +79,9 @@ public class CiudadBean {
 
     @PostConstruct
     public void init() {
+        listaPreguntas = new ArrayList();
+        listaEventos = new ArrayList();
+        listaComentarioPreguntas = new ArrayList();
         this.ciudad = ciudadFacade.getCiudad(0);
   
     }
@@ -139,6 +154,36 @@ public class CiudadBean {
     public void setImagen(StreamedContent imagen) {
         this.imagen = imagen;
     }
+
+    public List<Pregunta> getListaPreguntas() {
+     
+        listaPreguntas = preguntaFacade.getPreguntasByCity(this.ciudad.getIdCiudad());
+        return listaPreguntas;
+    }
+
+    public void setListaPreguntas(List<Pregunta> listaPreguntas) {
+        this.listaPreguntas = listaPreguntas;
+    }
+
+    public List<Evento> getListaEventos() {
+        //listaEventos = eventoFacade.
+        return listaEventos;
+    }
+
+    public void setListaEventos(List<Evento> listaEventos) {
+        this.listaEventos = listaEventos;
+    }
+
+    public List<ComentarioPregunta> getListaComentarioPreguntas() {
+        listaComentarioPreguntas=comentarioPreguntaFacade.getComentariosByQuestion(this.pregunta.getIdPregunta());
+        return listaComentarioPreguntas;
+    }
+
+    public void setListaComentarioPreguntas(List<ComentarioPregunta> listaComentarioPreguntas) {
+        this.listaComentarioPreguntas = listaComentarioPreguntas;
+    }
+    
+    
 
     public String doMostrarComentarios(Pregunta pregunta) {
         this.pregunta = pregunta;

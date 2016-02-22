@@ -14,7 +14,7 @@
         <h:inputTextarea id="descripcion" p:placeholder="Escriba descripción" cols="50" rows="20" class="letraTextArea" value="#{insertarCiudadBean.ciudad.descripcion}"/> <br></br><br></br>
         <h:outputLabel> Subir foto </h:outputLabel> <br></br>
         <h:inputFile p:accept="image/*" value="#{insertarCiudadBean.imagePart}"/><br></br><br></br>
-        <button class="btn btn-primary btn-block" jsf:action="#{insertarCiudadBean.doInsertarCiudad()}"></button><br></br><br></br>        
+        <h:commandButton action="#{insertarCiudadBean.doInsertarCiudad()}" value="Guardar" class="btn btn-primary btn-large btn-block"/><br></br><br></br>
     </h:form>
     
 </html>

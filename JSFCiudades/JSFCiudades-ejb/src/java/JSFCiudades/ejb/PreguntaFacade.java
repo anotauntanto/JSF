@@ -5,10 +5,13 @@
  */
 package JSFCiudades.ejb;
 
+import JSFCiudades.entity.Ciudad;
 import JSFCiudades.entity.Pregunta;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,4 +31,11 @@ public class PreguntaFacade extends AbstractFacade<Pregunta> {
         super(Pregunta.class);
     }
     
+    public List<Pregunta> getPreguntasByCity (Integer idCity) {
+        
+        Query q = em.createQuery("select p from Pregunta p where p.idCiudad.idCiudad=:idCiudad");
+        q.setParameter("idCiudad", idCity);        
+        return q.getResultList();
+        
+    }
 }

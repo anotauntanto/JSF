@@ -23,7 +23,7 @@
 
         <div class="ciudad"> <h:outputText value="Preguntas sobre #{ciudadBean.ciudad.nombreCiudad}"/> </div><br></br>
 
-        <h:dataTable value="#{ciudadBean.ciudad.preguntaCollection}" var="pregunta">
+        <h:dataTable value="#{ciudadBean.listaPreguntas}" var="pregunta">
             <h:column>
                 <fieldset class="hilos">
 
