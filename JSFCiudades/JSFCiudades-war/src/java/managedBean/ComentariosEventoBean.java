@@ -108,9 +108,9 @@ public class ComentariosEventoBean {
 
     public String doVerMapa(Evento evento) throws UnsupportedEncodingException, MalformedURLException {
         Geocoding ObjGeocod = new Geocoding();
-        //resultadoCD = ObjGeocod.getCoordinates(evento.getIdCiudad().getNombreCiudad()+ ", " + evento.getDireccion());
-        resultadoCD = ObjGeocod.getCoordinates("Sevilla, España, C/ Virgen de Lujan, 8");
-        System.out.println("Coordenadas: " + resultadoCD.x + " " + resultadoCD.y);
+        resultadoCD = ObjGeocod.getCoordinates(evento.getIdCiudad().getNombreCiudad()+ ", " + evento.getDireccion());
+        //resultadoCD = ObjGeocod.getCoordinates("Sevilla, España, C/ Virgen de Lujan, 8");
+        //System.out.println("Coordenadas: " + resultadoCD.x + " " + resultadoCD.y);
 
         return "VerMapa";
 
