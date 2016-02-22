@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    
+    <h:panelGroup rendered="#{loginRegistroBean.sesion == true}" >
+        <section class="box widget find">
+
+            <h:outputLabel class="titulo"> Insertar comentario a un evento  </h:outputLabel>
+            <br></br>
+            <h:outputLabel for="nombre" class="etiqueta">Usuario: #{loginRegistroBean.username}</h:outputLabel>
+            <br></br>
+
+            <h:inputTextarea value="#{guardarComentarioEventoBean.texto}" cols="26" rows="5" class="letraTextArea" required="true" />
+            <br></br>
+
+            <h:form>
+                <h:commandButton action="#{guardarComentarioEventoBean.doGuardar()}" value="Guardar" class="btn btn-primary btn-large btn-block"/>
+            </h:form>
+
+
+
+        </section>
+
+    </h:panelGroup>
+</html>
+

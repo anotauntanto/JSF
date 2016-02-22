@@ -16,6 +16,7 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class ComentarioEventoFacade extends AbstractFacade<ComentarioEvento> {
+
     @PersistenceContext(unitName = "JSFCiudades-ejbPU")
     private EntityManager em;
 
@@ -27,5 +28,5 @@ public class ComentarioEventoFacade extends AbstractFacade<ComentarioEvento> {
     public ComentarioEventoFacade() {
         super(ComentarioEvento.class);
     }
-    
+
 }
