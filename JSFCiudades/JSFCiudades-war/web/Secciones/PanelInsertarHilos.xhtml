@@ -18,7 +18,7 @@
             <h:form>
                 <div class="input-container">
                     <h:outputLabel class="titulo"> Añadir pregunta </h:outputLabel><br></br><br></br>
-                    <h:inputTextarea id="pregunta" cols="26" rows="5" class="letraTextArea" required="required" p:placeholder="Escriba pregunta" value="#{insertarHilosBean.pregunta.texto}"></h:inputTextarea> <br></br><br></br>
+                    <h:inputTextarea id="pregunta" cols="26" rows="5" class="letraTextArea" required="true" p:placeholder="Escriba pregunta" value="#{insertarHilosBean.pregunta.texto}"></h:inputTextarea> <br></br><br></br>
                     <button class="btn btn-primary btn-large btn-block" jsf:action="#{insertarHilosBean.doGuardarPregunta}"><span>Enviar</span></button>
                     <br></br>
                 </div>
@@ -36,7 +36,7 @@
                 </h:inputText><br></br>
 
                 <h:inputText value="#{insertarHilosBean.evento.direccion}" p:placeholder="Dirección"/><br></br>
-                <h:inputTextarea value="#{insertarHilosBean.evento.descripcion}" cols="26" rows="5" class="letraTextArea" required="required" p:placeholder="Descripción"/><br></br><br></br>
+                <h:inputTextarea value="#{insertarHilosBean.evento.descripcion}" cols="26" rows="5" class="letraTextArea" required="true" p:placeholder="Descripción"/><br></br><br></br>
                 <button class="btn btn-primary btn-large btn-block" jsf:action="#{insertarHilosBean.doGuardarEvento}"><span>Enviar</span></button>
                 <br></br>
             </h:form>      

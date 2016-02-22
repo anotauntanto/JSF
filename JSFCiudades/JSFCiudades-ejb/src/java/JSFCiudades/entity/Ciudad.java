@@ -20,10 +20,12 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.primefaces.model.StreamedContent;
 
 /**
  *
@@ -67,6 +69,9 @@ public class Ciudad implements Serializable {
     private Collection<Pregunta> preguntaCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCiudad")
     private Collection<Evento> eventoCollection;
+    
+    @Transient
+    private StreamedContent fotoStream;
 
     public Ciudad() {
     }
@@ -156,5 +161,15 @@ public class Ciudad implements Serializable {
     public String toString() {
         return "JSFCiudades.ejb.Ciudad[ idCiudad=" + idCiudad + " ]";
     }
+
+    public StreamedContent getFotoStream() {
+        return fotoStream;
+    }
+
+    public void setFotoStream(StreamedContent fotoStream) {
+        this.fotoStream = fotoStream;
+    }
+    
+    
 
 }

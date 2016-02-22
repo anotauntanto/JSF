@@ -7,15 +7,19 @@ package managedBean;
 
 import JSFCiudades.ejb.CiudadFacade;
 import JSFCiudades.entity.Ciudad;
+import static com.sun.faces.facelets.util.Path.context;
 import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.PhaseId;
 import model.ListaCiudadesStreamed;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
@@ -34,11 +38,15 @@ public class NavegacionCiudadesBean {
     protected int total;
     protected int indice;
     final protected int tamPag = 2;
-    
+
     protected int id = 0;
 
-    //protected Ciudad ciudad;
-    protected List<ListaCiudadesStreamed> listaCiudades;
+
+    protected List<Ciudad> listaCiudades;
+
+
+    @ManagedProperty(value = "#{ciudadBean}")
+    protected CiudadBean ciudadBean;
 
     /**
      * Creates a new instance of NavegacionCiudadesBean
@@ -51,33 +59,10 @@ public class NavegacionCiudadesBean {
     public void init() {
 
         int[] num = {0, tamPag};
-        List<Ciudad> findRange = ciudadFacade.findRange(num);
-        listaCiudades = new ArrayList();
-
-        DefaultStreamedContent imagen1 = new DefaultStreamedContent(new ByteArrayInputStream(findRange.get(0).getFoto()));
-        ListaCiudadesStreamed ciudad_mostrar1 = new ListaCiudadesStreamed(findRange.get(0).getDescripcion(), findRange.get(0).getNombreCiudad(), imagen1);
-        listaCiudades.add(ciudad_mostrar1);
-        
-        DefaultStreamedContent imagen2 = new DefaultStreamedContent(new ByteArrayInputStream(findRange.get(1).getFoto()));
-        ListaCiudadesStreamed ciudad_mostrar2 = new ListaCiudadesStreamed(findRange.get(1).getDescripcion(), findRange.get(1).getNombreCiudad(), imagen2);
-        listaCiudades.add(ciudad_mostrar2);
-        
-        DefaultStreamedContent imagen3 = new DefaultStreamedContent(new ByteArrayInputStream(findRange.get(2).getFoto()));
-        ListaCiudadesStreamed ciudad_mostrar3 = new ListaCiudadesStreamed(findRange.get(2).getDescripcion(), findRange.get(2).getNombreCiudad(), imagen3);
-        listaCiudades.add(ciudad_mostrar3);
-        
-        /*for (int i = 0; i <= tamPag; i++) {
-         DefaultStreamedContent imagen = new DefaultStreamedContent (new ByteArrayInputStream(findRange.get(i).getFoto()));
-         ListaCiudadesStreamed ciudad_mostrar = new ListaCiudadesStreamed(findRange.get(i).getDescripcion(), findRange.get(i).getNombreCiudad(),imagen);
-            
-         System.out.println("Llego");
-         listaCiudades.add(ciudad_mostrar);
-
-         }*/
+        listaCiudades = ciudadFacade.findRange(num);
         total = ciudadFacade.count();
         this.indice = 0;
 
-        System.out.println("Total: " + total);
     }
 
     public int getTotal() {
@@ -96,12 +81,33 @@ public class NavegacionCiudadesBean {
         this.indice = indice;
     }
 
-    public List<ListaCiudadesStreamed> getListaCiudades() {
+    public List<Ciudad> getListaCiudades() {
         return listaCiudades;
     }
 
-    public void setListaCiudades(List<ListaCiudadesStreamed> listaCiudades) {
+    public void setListaCiudades(List<Ciudad> listaCiudades) {
         this.listaCiudades = listaCiudades;
+    }
+
+    public CiudadBean getCiudadBean() {
+        return ciudadBean;
+    }
+
+    public void setCiudadBean(CiudadBean ciudadBean) {
+        this.ciudadBean = ciudadBean;
+    }
+
+    public StreamedContent getFotoCiudad() {
+        
+        FacesContext context = FacesContext.getCurrentInstance();
+        if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE) {
+            return new DefaultStreamedContent();
+        } else {
+            String strId = context.getExternalContext().getRequestParameterMap().get("id");
+            Ciudad ciudad = this.listaCiudades.get(Integer.parseInt(strId));
+
+            return new DefaultStreamedContent(new ByteArrayInputStream(ciudad.getFoto()));
+        }
     }
 
     public String doAnterior() {
@@ -109,13 +115,7 @@ public class NavegacionCiudadesBean {
         if (indice != 0) {
             indice -= tamPag + 1;
             int[] num = {indice, indice + tamPag};
-            List<Ciudad> findRange = ciudadFacade.findRange(num);
-            for (int i = 0; i <= tamPag; i++) {
-                ListaCiudadesStreamed ciudad_mostrar = new ListaCiudadesStreamed(findRange.get(i).getDescripcion(), findRange.get(i).getNombreCiudad(), new DefaultStreamedContent(new ByteArrayInputStream(findRange.get(i).getFoto())));
-                listaCiudades.add(ciudad_mostrar);
-
-            }
-            System.out.println("IndiceAnt: " + indice);
+            listaCiudades = ciudadFacade.findRange(num);
 
         }
 
@@ -127,21 +127,16 @@ public class NavegacionCiudadesBean {
         if (indice < (this.total - 3)) {
             indice += tamPag + 1;
             int[] num = {indice, indice + tamPag};
-            List<Ciudad> findRange = ciudadFacade.findRange(num);
-            for (int i = 0; i <= tamPag; i++) {
-                ListaCiudadesStreamed ciudad_mostrar = new ListaCiudadesStreamed(findRange.get(i).getDescripcion(), findRange.get(i).getNombreCiudad(), new DefaultStreamedContent(new ByteArrayInputStream(findRange.get(i).getFoto())));
-                listaCiudades.add(ciudad_mostrar);
+            listaCiudades = ciudadFacade.findRange(num);
 
-            }
-            System.out.println("IndiceSig: " + indice);
         }
 
         return null;
     }
 
     public String doMostrarCiudad(Ciudad ciudad) {
-        //this.ciudad = ciudad;
-        this.id = ciudad.getIdCiudad();
+
+        ciudadBean.setCiudad(ciudad);
         return "PrincipalCiudad";
     }
 

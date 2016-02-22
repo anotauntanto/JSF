@@ -33,7 +33,6 @@ import org.json.JSONException;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
-
 /**
  *
  * @author inftel06
@@ -53,37 +52,27 @@ public class CiudadBean {
     protected float temperatura;
     protected String fecha;
 
-    //protected int idPregunta;
     protected Pregunta pregunta;
-    
+
     protected Evento evento;
     protected StreamedContent imagen;
-    
-    //@ManagedProperty(value="#{navegacionCiudadesBean}")
-    //protected NavegacionCiudadesBean navegacionCiudadesBean;
-    
+
+
     /**
      * Creates a new instance of CiudadBean
      */
     public CiudadBean() {
-        
- 
+
     }
-    
 
     @PostConstruct
     public void init() {
+        this.ciudad = ciudadFacade.getCiudad(0);
+  
+    }
 
-        //if (navegacionCiudadesBean.ciudad == null) {
-           this.ciudad = ciudadFacade.getCiudad(0); 
-        //} else {
-        //    this.ciudad = navegacionCiudadesBean.ciudad;
-        //}
-        
-        imagen = new DefaultStreamedContent (new ByteArrayInputStream(this.ciudad.getFoto()));
-        System.out.println("Otra Vez");   
+    public float getTemperatura() {
 
-        //Temperatura para una ciudad
         OpenWeatherMap owm = new OpenWeatherMap("");
         owm.setUnits(OpenWeatherMap.Units.METRIC);
         owm.setApiKey("d05638724c60088ab81382441f4e8586");
@@ -94,26 +83,24 @@ public class CiudadBean {
         } catch (IOException | JSONException ex) {
             System.out.println("Error weather");
         }
+        
         this.temperatura = cwd.getMainInstance().getTemperature();
-
-        //Recuperar la fecha de una ciudad
-        Date midate = new Date();
-        String[] verfecha = midate.toString().split(" ");
-        fecha = verfecha[2] + "/" + verfecha[1] + "/" + verfecha[5];
-    }
-
-
-    public float getTemperatura() {
-
+        
         return temperatura;
     }
 
     public void setTemperatura(float temperatura) {
+        
         this.temperatura = temperatura;
     }
 
     public String getFecha() {
 
+        //Recuperar la fecha actual
+        Date midate = new Date();
+        String[] verfecha = midate.toString().split(" ");
+        this.fecha = verfecha[2] + "/" + verfecha[1] + "/" + verfecha[5];
+        
         return fecha;
     }
 
@@ -137,15 +124,6 @@ public class CiudadBean {
         this.pregunta = pregunta;
     }
 
-    /*
-    public NavegacionCiudadesBean getNavegacionCiudadesBean() {
-        return navegacionCiudadesBean;
-    }
-
-    public void setNavegacionCiudadesBean(NavegacionCiudadesBean navegacionCiudadesBean) {
-        this.navegacionCiudadesBean = navegacionCiudadesBean;
-    }*/
-
     public Evento getEvento() {
         return evento;
     }
@@ -155,24 +133,22 @@ public class CiudadBean {
     }
 
     public StreamedContent getImagen() {
-        return imagen;
+        return new DefaultStreamedContent(new ByteArrayInputStream(this.ciudad.getFoto()));
     }
 
     public void setImagen(StreamedContent imagen) {
         this.imagen = imagen;
     }
-    
-    
-   
+
     public String doMostrarComentarios(Pregunta pregunta) {
-        //this.idPregunta = idPregunta;
         this.pregunta = pregunta;
         return "ListadoPreguntasCiudad";
     }
-    
-    public String doMostrarEventos(Evento evento){
+
+    public String doMostrarEventos(Evento evento) {
         this.evento = evento;
         return "ListadoEventoCiudad";
     }
-   
+
+    
 }

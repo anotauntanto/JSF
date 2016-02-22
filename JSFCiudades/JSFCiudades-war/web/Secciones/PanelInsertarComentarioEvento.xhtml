@@ -6,16 +6,17 @@
     <h:panelGroup rendered="#{loginRegistroBean.sesion == true}" >
         <section class="box widget find">
 
-            <h:outputLabel class="titulo"> Insertar comentario a un evento  </h:outputLabel>
-            <br></br><br></br>
-            <h:outputLabel for="nombre" class="etiqueta">Usuario: #{loginRegistroBean.username}</h:outputLabel>
-            <br></br><br></br>
-
             <h:form>
+                <h:outputLabel class="titulo"> Insertar comentario a un evento  </h:outputLabel>
+                <br></br><br></br>
+                <h:outputLabel for="nombre" class="etiqueta">Usuario: #{loginRegistroBean.username}</h:outputLabel>
+                <br></br><br></br>
+
+
                 <h:inputTextarea value="#{guardarComentarioEventoBean.texto}" cols="26" rows="5" class="letraTextArea" required="true" />
                 <br></br><br></br>
                 <h:commandButton action="#{guardarComentarioEventoBean.doGuardar()}" value="Guardar" class="btn btn-primary btn-large btn-block"/>
-                
+
             </h:form>
 
 

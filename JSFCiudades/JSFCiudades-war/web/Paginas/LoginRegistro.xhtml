@@ -34,7 +34,7 @@
                 <h:form>
 
                     <div class="input-container">
-                        <h:inputText id="usuario" required="required" value="#{loginRegistroBean.username}"/>
+                        <h:inputText id="usuario" required="true" value="#{loginRegistroBean.username}"/>
                         <h:outputLabel for="usuario">Nombre de usuario</h:outputLabel>
                         <div class="bar"></div>
 
@@ -42,7 +42,7 @@
 
                     <div class="input-container">
 
-                        <h:inputSecret id="pass" required="required" value="#{loginRegistroBean.passLogin}"/>
+                        <h:inputSecret id="pass" required="true" value="#{loginRegistroBean.passLogin}"/>
                         <h:outputLabel for="pass">Contraseña</h:outputLabel>
                         <div class="bar"></div>
 
@@ -68,7 +68,7 @@
 
                     <div class="input-container">
 
-                        <h:inputText id="usuario" required="required" value="#{loginRegistroBean.username}"/>
+                        <h:inputText id="usuario" required="true" value="#{loginRegistroBean.username}"/>
                         <h:outputLabel for="usuario">Nombre de usuario</h:outputLabel>
                         <h:outputText value="#{loginRegistroBean.error}" rendered="#{loginRegistroBean.error.length() != 0}"/>
                         <div class="bar"></div>
@@ -79,7 +79,7 @@
 
                     <div class="input-container">
 
-                        <h:inputSecret id="pass1" required="required" value="#{loginRegistroBean.passRegister1}" onkeyup="comprobarSeguridad();"/>
+                        <h:inputSecret id="pass1" required="true" value="#{loginRegistroBean.passRegister1}" onkeyup="comprobarSeguridad();"/>
                         <h:outputLabel for="pass1">Contraseña</h:outputLabel>
                         <span id="mensaje2" class="mensaje"></span>
                         <div class="bar"></div>
@@ -88,7 +88,7 @@
 
                     <div class="input-container">
 
-                        <h:inputSecret id="pass2" required="required" value="#{loginRegistroBean.passRegister2}" onkeyup="comprobarCoinciden();"/>
+                        <h:inputSecret id="pass2" required="true" value="#{loginRegistroBean.passRegister2}" onkeyup="comprobarCoinciden();"/>
                         <h:outputLabel for="pass2">Repita la contraseña</h:outputLabel>
                         <span id="mensaje3" class ="mensaje"></span>
                         <div class="bar"></div>

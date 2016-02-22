@@ -15,7 +15,7 @@
                 <br></br><br></br>
                 <h:outputLabel class="etiqueta">Usuario: #{loginRegistroBean.username} </h:outputLabel>
                 <br></br><br></br>
-                <h:inputTextarea p:placeholder="Escriba su comentario" cols="26" rows="5" class="letraTextArea" required="required" value="#{insertarComentarioPreguntaBean.comPregunta.texto}"></h:inputTextarea>
+                <h:inputTextarea p:placeholder="Escriba su comentario" cols="26" rows="5" class="letraTextArea" required="true" value="#{insertarComentarioPreguntaBean.comPregunta.texto}"></h:inputTextarea>
                 <br></br><br></br>
                 <button class="btn btn-primary btn-large btn-block" jsf:action="#{insertarComentarioPreguntaBean.doGuardarComentarioPregunta()}"><span>Enviar</span></button>
 

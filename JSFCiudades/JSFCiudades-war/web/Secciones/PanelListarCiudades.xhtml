@@ -2,54 +2,40 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:c="http://primefaces.org/ui">  
+      xmlns:c="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <!-- Para cada Ciudad -->
     <h:dataTable  value="#{navegacionCiudadesBean.listaCiudades}" var="ciudad"  width="100%">
-
         <h:column>
-
             <article class="box post">
 
                 <fieldset class="hilos">
-                    <div class="image" align="right">
-                        <c:graphicImage value="#{ciudad.imagen}" width="200" height="200"  class="bordeImagen"/>
-                            
-                    </div>
 
-                    <div class="details">
+                    <div class="col_3of5 details">
                         <h:form>
-                            <h:commandLink action="#{navegacionCiudadesBean.doMostrarCiudad(ciudad)}" class="inicio"> #{ciudad.nombre} </h:commandLink> <br></br>
+                            <h:commandLink action="#{navegacionCiudadesBean.doMostrarCiudad(ciudad)}" class="inicio"> #{ciudad.nombreCiudad} </h:commandLink> <br></br>
                         </h:form>
 
                         <div class="letraciudad">#{ciudad.descripcion}</div>
+                        
+                    </div>
+                    <div class="col_2of5 image" align="right">
+                        <c:graphicImage value="#{navegacionCiudadesBean.fotoCiudad}" width="200" height="200" class="bordeImagen" >
+                            <f:param name="id" value="#{navegacionCiudadesBean.listaCiudades.indexOf(ciudad)}" />
+                        </c:graphicImage>
+
                     </div>
 
-                </fieldset>    
+
+                </fieldset>
             </article>
 
         </h:column>
 
     </h:dataTable>
-    
-         <article class="box post">
 
-                <fieldset class="hilos">
-                    <div class="image" align="right">
-                        <c:graphicImage value="#{navegacionCiudadesBean.listaCiudades[2].imagen}" width="200" height="200"  class="bordeImagen"/>
-                            
-                    </div>
 
-                    <div class="details">
-                        <h:form>
-                            <h:commandLink action="#{navegacionCiudadesBean.doMostrarCiudad()}" class="inicio"> #{navegacionCiudadesBean.listaCiudades[2].nombre} </h:commandLink> <br></br>
-                        </h:form>
-
-                        <div class="letraciudad">#{navegacionCiudadesBean.listaCiudades[2].descripcion}</div>
-                    </div>
-
-                </fieldset>    
-            </article>
 
 
 </html>
