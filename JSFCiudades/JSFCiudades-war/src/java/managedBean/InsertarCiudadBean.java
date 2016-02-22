@@ -5,8 +5,18 @@
  */
 package managedBean;
 
+import JSFCiudades.ejb.CiudadFacade;
+import JSFCiudades.entity.Ciudad;
+import java.awt.Image;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.servlet.http.Part;
+import org.apache.commons.io.IOUtils;
 
 /**
  *
@@ -15,11 +25,53 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean
 @RequestScoped
 public class InsertarCiudadBean {
+    @EJB
+    private CiudadFacade ciudadFacade;
 
     /**
      * Creates a new instance of InsertarCiudadBean
      */
+    
+    protected Ciudad ciudad;
+    protected Part imagePart;
+    
+    
     public InsertarCiudadBean() {
+        
+        ciudad = new Ciudad();
     }
+
+    public Ciudad getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(Ciudad ciudad) {
+        this.ciudad = ciudad;
+    }
+
+    public Part getImagePart() {
+        return imagePart;
+    }
+
+    public void setImagePart(Part imagePart) {
+        this.imagePart = imagePart;
+    }
+
+  
+    public String doInsertarCiudad () {
+       
+        try {
+            InputStream inputStream = imagePart.getInputStream();
+            ciudad.setFoto(IOUtils.toByteArray(inputStream));
+        } catch (IOException ex) {
+            Logger.getLogger(InsertarCiudadBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ciudadFacade.create(ciudad);
+        ciudad = new Ciudad();
+        
+        return "";
+    }
+    
+    
     
 }

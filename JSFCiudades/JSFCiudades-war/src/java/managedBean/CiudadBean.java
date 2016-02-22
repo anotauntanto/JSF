@@ -12,6 +12,7 @@ import JSFCiudades.ejb.CiudadFacade;
 import JSFCiudades.ejb.EventoFacade;
 import JSFCiudades.ejb.UsuarioFacade;
 import JSFCiudades.entity.Pregunta;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Date;
@@ -22,12 +23,15 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.imageio.ImageIO;
 import javax.imageio.stream.ImageOutputStream;
 import net.aksingh.owmjapis.CurrentWeather;
 import net.aksingh.owmjapis.OpenWeatherMap;
 import org.json.JSONException;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 
 
 /**
@@ -35,7 +39,7 @@ import org.json.JSONException;
  * @author inftel06
  */
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class CiudadBean {
 
     @EJB
@@ -45,8 +49,6 @@ public class CiudadBean {
     @EJB
     private CiudadFacade ciudadFacade;
 
-
-    protected ImageOutputStream image;
     protected Ciudad ciudad;
     protected float temperatura;
     protected String fecha;
@@ -55,6 +57,7 @@ public class CiudadBean {
     protected Pregunta pregunta;
     
     protected Evento evento;
+    protected StreamedContent imagen;
     
     //@ManagedProperty(value="#{navegacionCiudadesBean}")
     //protected NavegacionCiudadesBean navegacionCiudadesBean;
@@ -63,8 +66,10 @@ public class CiudadBean {
      * Creates a new instance of CiudadBean
      */
     public CiudadBean() {
-
+        
+ 
     }
+    
 
     @PostConstruct
     public void init() {
@@ -75,12 +80,8 @@ public class CiudadBean {
         //    this.ciudad = navegacionCiudadesBean.ciudad;
         //}
         
-
-        try {
-            image = ImageIO.createImageOutputStream(this.ciudad.getFoto());
-        } catch (IOException ex) {
-            Logger.getLogger(CiudadBean.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        imagen = new DefaultStreamedContent (new ByteArrayInputStream(this.ciudad.getFoto()));
+        System.out.println("Otra Vez");   
 
         //Temperatura para una ciudad
         OpenWeatherMap owm = new OpenWeatherMap("");
@@ -128,23 +129,6 @@ public class CiudadBean {
         this.ciudad = ciudad;
     }
 
-    public ImageOutputStream getImage() {
-        return image;
-    }
-
-    public void setImage(ImageOutputStream image) {
-        this.image = image;
-    }
-
-    /*public int getIdPregunta() {
-        return idPregunta;
-    }
-
-    public void setIdPregunta(int idPregunta) {
-        this.idPregunta = idPregunta;
-    }*/
-
-    
     public Pregunta getPregunta() {
         return pregunta;
     }
@@ -168,6 +152,14 @@ public class CiudadBean {
 
     public void setEvento(Evento evento) {
         this.evento = evento;
+    }
+
+    public StreamedContent getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(StreamedContent imagen) {
+        this.imagen = imagen;
     }
     
     

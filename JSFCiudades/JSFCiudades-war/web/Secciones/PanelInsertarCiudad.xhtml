@@ -9,12 +9,12 @@
         
         <h:outputLabel class="ciudad"> Añadir ciudad </h:outputLabel> <br></br><br></br>
         <h:outputLabel> Nombre ciudad </h:outputLabel> <br></br>
-        <h:inputText id="nombreCiudad" required="required" size="20" value=""/><br></br><br></br> 
+        <h:inputText id="nombreCiudad" required="required" size="20" value="#{insertarCiudadBean.ciudad.nombreCiudad}"/><br></br><br></br> 
         <h:outputLabel> Descripción </h:outputLabel> <br></br>
-        <h:inputTextarea id="descripcion" p:placeholder="Escriba descripción"cols="50" rows="20" class="letraTextArea" value=""/><br></br><br></br>
+        <h:inputTextarea id="descripcion" p:placeholder="Escriba descripción" cols="50" rows="20" class="letraTextArea" value="#{insertarCiudadBean.ciudad.descripcion}"/> <br></br><br></br>
         <h:outputLabel> Subir foto </h:outputLabel> <br></br>
-        <h:inputFile p:accept="image/*"/><br></br><br></br>
-        <button class="btn btn-primary btn-large btn-block" jsf:action="#{insertarCiudadBean}"></button><br></br><br></br>        
+        <h:inputFile p:accept="image/*" value="#{insertarCiudadBean.imagePart}"/><br></br><br></br>
+        <button class="btn btn-primary btn-block" jsf:action="#{insertarCiudadBean.doInsertarCiudad()}"></button><br></br><br></br>        
     </h:form>
     
 </html>
