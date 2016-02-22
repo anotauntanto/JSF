@@ -19,7 +19,7 @@
 
                     <div class="details">
                         <h:form>
-                            <h:commandLink action="#{navegacionCiudadesBean.doMostrarCiudad()}" class="inicio"> #{ciudad.nombre} </h:commandLink> <br></br>
+                            <h:commandLink action="#{navegacionCiudadesBean.doMostrarCiudad(ciudad)}" class="inicio"> #{ciudad.nombre} </h:commandLink> <br></br>
                         </h:form>
 
                         <div class="letraciudad">#{ciudad.descripcion}</div>

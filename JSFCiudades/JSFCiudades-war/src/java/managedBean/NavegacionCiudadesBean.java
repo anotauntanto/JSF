@@ -34,6 +34,8 @@ public class NavegacionCiudadesBean {
     protected int total;
     protected int indice;
     final protected int tamPag = 2;
+    
+    protected int id = 0;
 
     //protected Ciudad ciudad;
     protected List<ListaCiudadesStreamed> listaCiudades;
@@ -42,6 +44,7 @@ public class NavegacionCiudadesBean {
      * Creates a new instance of NavegacionCiudadesBean
      */
     public NavegacionCiudadesBean() {
+
     }
 
     @PostConstruct
@@ -136,8 +139,9 @@ public class NavegacionCiudadesBean {
         return null;
     }
 
-    public String doMostrarCiudad() {
+    public String doMostrarCiudad(Ciudad ciudad) {
         //this.ciudad = ciudad;
+        this.id = ciudad.getIdCiudad();
         return "PrincipalCiudad";
     }
 

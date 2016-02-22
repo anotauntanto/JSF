@@ -34,6 +34,8 @@ public class LoginRegistroBean {
 
     private String error;
 
+    protected Usuario usuario;
+
     /**
      * Creates a new instance of LoginRegistroBean
      */
@@ -98,6 +100,14 @@ public class LoginRegistroBean {
         this.idUsuario = id;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+    
     public String doLogin() {
 
         //verificar si existe una sesión iniciada
@@ -106,8 +116,11 @@ public class LoginRegistroBean {
             idUsuario = usuarioFacade.isLoginOK(username, passLogin);
             if (idUsuario > 0) { //verificar si el login es correcto
                 this.sesion = true;
+                usuario = new Usuario(idUsuario, username, passLogin);
+
                 return "PrincipalCiudad";
             } else {
+
                 this.sesion = false;
                 return "LoginRegistro";
             }
@@ -135,11 +148,11 @@ public class LoginRegistroBean {
 
                 this.sesion = true;
 
-                Usuario user = new Usuario();
-                user.setNombreUsuario(username);
+                usuario = new Usuario();
+                usuario.setNombreUsuario(username);
                 String passHuella = MD5Signature.generateMD5Signature(passRegister1);
-                user.setContrasena(passHuella);
-                usuarioFacade.create(user);
+                usuario.setContrasena(passHuella);
+                usuarioFacade.create(usuario);
 
                 return "PrincipalCiudad";
 
@@ -161,7 +174,8 @@ public class LoginRegistroBean {
         passRegister1 = "";
         passRegister2 = "";
         idUsuario = 0;
-        
+        usuario = new Usuario();
+
         return null;
 
     }

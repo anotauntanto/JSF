@@ -16,7 +16,7 @@
     <h:body onload="loadMap(#{comentariosEventoBean.resultadoCD.x},#{comentariosEventoBean.resultadoCD.y})">
         <div id="map_container"></div>
         <h:form>
-            <h:commandButton action="#{comentariosEventoBean.doVolver()}" value="Volver al evento"/>
+            <h:commandButton action="#{comentariosEventoBean.doVolver(comentariosEventoBean.evento)}" value="Volver al evento"/>
         </h:form>
     </h:body>
 </html>

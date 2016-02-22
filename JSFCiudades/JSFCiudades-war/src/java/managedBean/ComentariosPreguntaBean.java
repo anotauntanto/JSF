@@ -2,7 +2,7 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- */
+
 package managedBean;
 
 import JSFCiudades.ejb.ComentarioPreguntaFacade;
@@ -17,7 +17,7 @@ import javax.faces.bean.RequestScoped;
 /**
  *
  * @author inftel08
- */
+
 @ManagedBean
 @RequestScoped
 public class ComentariosPreguntaBean {
@@ -32,7 +32,9 @@ public class ComentariosPreguntaBean {
     protected CiudadBean ciudadBean;
     /**
      * Creates a new instance of ComentariosPreguntaBean
-     */
+
+
+
     
     
     public ComentariosPreguntaBean() {
@@ -61,9 +63,5 @@ public class ComentariosPreguntaBean {
         this.ciudadBean = ciudadBean;
     }
     
-    
-
-    
-    
-
 }
+ */

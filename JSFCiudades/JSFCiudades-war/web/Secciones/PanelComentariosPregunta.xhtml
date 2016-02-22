@@ -8,16 +8,16 @@
     <article class="box post">
         <fieldset class="hilos">
             <div class="campo-clave">Usuario :</div> 
-            <div class="campo-valor">#{comentariosPreguntaBean.pregunta.idUsuario.nombreUsuario}</div>
+            <div class="campo-valor">#{ciudadBean.pregunta.idUsuario.nombreUsuario}</div>
 
             <div class="campo-clave">Pregunta :</div> 
-            <div class="campo-valor">#{comentariosPreguntaBean.pregunta.texto}</div>
+            <div class="campo-valor">#{ciudadBean.pregunta.texto}</div>
         </fieldset>
     </article>
 
     <article class="box post">
 
-        <h:dataTable value="#{comentariosPreguntaBean.pregunta.comentarioPreguntaCollection}" var="comentario">
+        <h:dataTable value="#{ciudadBean.pregunta.comentarioPreguntaCollection}" var="comentario">
 
             <h:column>
 
