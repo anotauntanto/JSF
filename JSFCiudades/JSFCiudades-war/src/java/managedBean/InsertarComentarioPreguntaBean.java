@@ -68,7 +68,7 @@ public class InsertarComentarioPreguntaBean {
 
     public String doGuardarComentarioPregunta() {
         comPregunta.setIdUsuario(loginRegistroBean.usuario);
-        comPregunta.setIdPregunta(ciudadBean.pregunta);
+        comPregunta.setIdPregunta(ciudadBean.getPregunta());
         comentarioPreguntaFacade.create(comPregunta);
         comPregunta = new ComentarioPregunta();
         return "";
