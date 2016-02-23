@@ -188,7 +188,7 @@ public class LoginRegistroBean {
         idUsuario = 0;
         usuario = new Usuario();
 
-        return null;
+        return "PrincipalCiudad";
 
     }
 

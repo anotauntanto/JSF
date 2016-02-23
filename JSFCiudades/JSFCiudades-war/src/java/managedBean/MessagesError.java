@@ -16,15 +16,15 @@ import javax.faces.bean.ManagedBean;
 @ManagedBean
 public class MessagesError implements Serializable{
     
-    private String error1;
+    private String errorCadenaVacia = "Debe introducir algún texto...";
     private String error2;
 
-    public String getError1() {
-        return error1;
+    public String getErrorCadenaVacia() {
+        return errorCadenaVacia;
     }
 
-    public void setError1(String error1) {
-        this.error1 = error1;
+    public void setErrorCadenaVacia(String error1) {
+        this.errorCadenaVacia = error1;
     }
 
     public String getError2() {
