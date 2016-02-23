@@ -84,7 +84,6 @@
 
                         <h:inputText id="usuario" required="true" value="#{loginRegistroBean.username}"/>
                         <h:outputLabel for="usuario" value="#{msg['Usuario']}"></h:outputLabel>
-                        <h:outputText value="#{loginRegistroBean.error}" rendered="#{loginRegistroBean.error.length() != 0}"/>
                         <div class="bar"></div>
 
                         <!--CCHOOSE-->
@@ -93,7 +92,7 @@
 
                     <div class="input-container">
 
-                        <h:inputSecret id="pass1" required="true" value="#{loginRegistroBean.passRegister1}" onkeyup="comprobarSeguridad();"/>
+                        <h:inputSecret id="pass1" required="true" value="#{loginRegistroBean.passRegister1}" onmouseup="comprobarSeguridad();"/>
                         <h:outputLabel for="pass1" value="#{msg['Clave']}"></h:outputLabel>
                         <span id="mensaje2" class="mensaje"></span>
                         <div class="bar"></div>
@@ -102,7 +101,7 @@
 
                     <div class="input-container">
 
-                        <h:inputSecret id="pass2" required="true" value="#{loginRegistroBean.passRegister2}" onkeyup="comprobarCoinciden();"/>
+                        <h:inputSecret id="pass2" required="true" value="#{loginRegistroBean.passRegister2}" onmouseup="comprobarCoinciden();"/>
                         <h:outputLabel for="pass2" value="#{msg['Clave2']}"></h:outputLabel>
                         <span id="mensaje3" class ="mensaje"></span>
                         <div class="bar"></div>
