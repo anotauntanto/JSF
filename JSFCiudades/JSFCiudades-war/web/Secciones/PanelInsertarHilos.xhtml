@@ -18,7 +18,13 @@
             <h:form>
                 <div class="input-container">
                     <h:outputLabel class="titulo"> Añadir pregunta </h:outputLabel><br></br><br></br>
-                    <h:inputTextarea id="pregunta" cols="26" rows="5" class="letraTextArea" required="true" p:placeholder="Escriba pregunta" value="#{insertarHilosBean.pregunta.texto}"></h:inputTextarea> <br></br><br></br>
+
+                    <h:inputTextarea id="pregunta" cols="26" rows="5" class="letraTextArea" p:placeholder="Escriba pregunta" value="#{insertarHilosBean.pregunta.texto}" validatorMessage="#{messagesError.errorCadenaVacia}">
+                        <f:validateLength minimum="0" />
+                    </h:inputTextarea> <br></br>  
+
+                    <h:message for="pregunta" style="color:red; font-size: small" rendered="#{insertarHilosBean.pregunta.texto.length() != 0}"/><br></br>
+
                     <button class="btn btn-primary btn-large btn-block" jsf:action="#{insertarHilosBean.doGuardarPregunta}"><span>Enviar</span></button>
                     <br></br>
                 </div>
@@ -29,16 +35,40 @@
 
         <section class="box widget find">
             <h:form>
-                <h:outputLabel class="titulo"> Añadir evento </h:outputLabel><br></br><br></br>
-                <h:inputText value="#{insertarHilosBean.evento.nombreEvento}" p:placeholder="Nombre del evento"/><br></br>
-                <h:inputText id="datepicker" styleClass="datepicker" p:placeholder="Fecha" value="#{insertarHilosBean.evento.fecha}">
-                    <f:convertDateTime type="date" pattern="MM/dd/yyyy"/>
-                </h:inputText><br></br>
+                <div class="input-container">
+                    <h:outputLabel class="titulo"> Añadir evento </h:outputLabel><br></br><br></br>
 
-                <h:inputText value="#{insertarHilosBean.evento.direccion}" p:placeholder="Dirección"/><br></br>
-                <h:inputTextarea value="#{insertarHilosBean.evento.descripcion}" cols="26" rows="5" class="letraTextArea" required="true" p:placeholder="Descripción"/><br></br><br></br>
-                <button class="btn btn-primary btn-large btn-block" jsf:action="#{insertarHilosBean.doGuardarEvento}"><span>Enviar</span></button>
-                <br></br>
+                    <h:inputText id="evento1"  value="#{insertarHilosBean.evento.nombreEvento}" p:placeholder="Nombre del evento" validatorMessage="#{messagesError.errorCadenaVacia}">
+                        <f:validateLength minimum="0"/>
+                    </h:inputText>
+                    <h:message for="evento1"  style="color:red; font-size: small" rendered="#{insertarHilosBean.evento.nombreEvento.length() != 0}"/>
+                    <br></br>
+
+                    <h:inputText id="datepicker" styleClass="datepicker" p:placeholder="Fecha" value="#{insertarHilosBean.evento.fecha}" validatorMessage="">
+                        <f:convertDateTime type="date" pattern="MM/dd/yyyy"/>
+                        <f:validateLength minimum="0"/>
+                    </h:inputText>
+                    <h:message for="datepicker" style="color:red; font-size: small" rendered="#{!insertarHilosBean.evento.fecha.equals(null)}"/>
+                    <br></br>
+
+                    <h:inputText id="evento2" value="#{insertarHilosBean.evento.direccion}" p:placeholder="Dirección" validatorMessage="#{messagesError.errorCadenaVacia}">
+                        <f:validateLength minimum="0" />
+                    </h:inputText>
+                    <h:message for="evento2" style="color:red; font-size: small" rendered="#{insertarHilosBean.evento.direccion.length() != 0}"/>
+                    <br></br>
+
+                    <h:inputTextarea id="evento3" value="#{insertarHilosBean.evento.descripcion}" cols="26" rows="5" class="letraTextArea" p:placeholder="Descripción" validatorMessage="#{messagesError.errorCadenaVacia}">
+                        <f:validateLength minimum="0" />
+                    </h:inputTextarea>
+                    <h:message for="evento3" style="color:red; font-size: small" rendered="#{insertarHilosBean.evento.descripcion.length() != 0}"/>
+                    <br></br>
+
+                    <br></br>
+
+                    <button class="btn btn-primary btn-large btn-block" jsf:action="#{insertarHilosBean.doGuardarEvento}"><span>Enviar</span></button>
+                    <br></br>
+
+                </div>
             </h:form>      
         </section>   
     </h:panelGroup>
