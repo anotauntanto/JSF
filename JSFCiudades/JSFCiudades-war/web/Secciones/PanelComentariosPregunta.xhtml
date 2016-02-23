@@ -14,9 +14,17 @@
             <div class="campo-valor">#{ciudadBean.pregunta.texto}</div>
         </fieldset>
     </article>
+    
+    <h:outputText class="ciudad" value="Respuestas: " rendered="#{ciudadBean.listaComentarioPreguntas.size() !=0 }"/>
 
     <article class="box post">
-
+        <div>
+        <br></br>
+        <h:outputText value="No hay respuestas a esta pregunta" rendered="#{ciudadBean.listaComentarioPreguntas.size() ==0 }"/>
+        
+        </div>
+        
+        
         <h:dataTable value="#{ciudadBean.listaComentarioPreguntas}" var="comentario">
 
             <h:column>
