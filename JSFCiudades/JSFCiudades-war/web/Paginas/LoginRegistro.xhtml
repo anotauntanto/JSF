@@ -8,7 +8,7 @@
     <h:head>
         <meta charset="UTF-8"></meta>
 
-        <title>Inicio sesión / registro</title>
+        <title>#{msg['Titulo']}</title>
 
 
         <h:outputStylesheet library="css" name="style2.css"  />
@@ -22,20 +22,15 @@
     </h:head>
 
     <h:body>
+        
+        <h:outputText class="position" value="#{msg['Idioma']}" /><br></br><br></br>
 <h:form class="position">
 	
     
-	<h:panelGrid columns="2">
-				
-		<h:outputText value="#{msg['Idioma']}" />
-		<h:selectOneMenu value="#{language.localeCode}" onchange="submit()" 
-			valueChangeListener="#{language.countryLocaleCodeChanged}">
-   			<f:selectItems value="#{language.countriesInMap}" /> 
-   		</h:selectOneMenu>
-
-	</h:panelGrid>
-			
-
+    <h:commandButton action="#{language.changeLanguage('en')}" value="Ingles" image="../resources/images/gb_images.png"></h:commandButton>
+    <h:outputLabel value="     "/>
+    <h:commandButton action="#{language.changeLanguage('es')}" value="Espanol" image="../resources/images/es_images.png"></h:commandButton>
+    
 			
       </h:form>
         <div class="pen-title"></div>
