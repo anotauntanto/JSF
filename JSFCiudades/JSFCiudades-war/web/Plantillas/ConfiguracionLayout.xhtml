@@ -20,19 +20,22 @@
 
             <div class ="grid_8">
                 <ui:insert name="PanelCabecera"/>
-                <ui:insert name="PanelBotonesConfiguracion"/>
+                
+                <h:panelGroup rendered="#{loginRegistroBean.idUsuario == 1}">
+                    <ui:insert name="PanelBotonesConfiguracion"/>
+                    <div>
+                        <article class="box post">
+                            <section style="text-align: center">
+                                <fieldset class="no_border">
+                                    <ui:insert name="PanelesConfiguracion"/>
+                                </fieldset>
+                            </section>
 
-                <div>
-                    <article class="box post">
-                        <section style="text-align: center">
-                            <fieldset class="no_border">
-                                <ui:insert name="PanelesConfiguracion"/>
-                            </fieldset>
-                        </section>
+                        </article>
 
-                    </article>
+                    </div>
 
-                </div>
+                </h:panelGroup>
 
             </div>
 
