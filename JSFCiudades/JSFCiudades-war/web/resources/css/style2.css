@@ -143,6 +143,7 @@ body {
   visibility: visible;
   -webkit-transition: .3s ease;
   transition: .3s ease;
+  alignment-adjust: middle;
 }
 .container.active .card.alt .title {
   -webkit-transition-delay: .3s;

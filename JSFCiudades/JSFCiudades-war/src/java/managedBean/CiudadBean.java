@@ -193,9 +193,7 @@ public class CiudadBean {
     public void setListaProximosEventos(List<Evento> listaProximosEventos) {
         this.listaProximosEventos = listaProximosEventos;
     }
-    
-    
-    
+      
 
     public String doMostrarComentarios(Pregunta pregunta) {
         this.pregunta = pregunta;

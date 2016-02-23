@@ -32,7 +32,7 @@ public class LoginRegistroBean {
     private String passRegister1;
     private String passRegister2;
 
-    private String error;
+    private int error = 0;
 
     protected Usuario usuario;
 
@@ -84,11 +84,11 @@ public class LoginRegistroBean {
         this.sesion = sesion;
     }
 
-    public String getError() {
+    public int getError() {
         return error;
     }
 
-    public void setError(String error) {
+    public void setError(int error) {
         this.error = error;
     }
 
@@ -114,14 +114,18 @@ public class LoginRegistroBean {
         if (this.sesion == false) { //si no existe una sesión previa
 
             idUsuario = usuarioFacade.isLoginOK(username, passLogin);
+
             if (idUsuario > 0) { //verificar si el login es correcto
                 this.sesion = true;
+                error = 0;
                 usuario = new Usuario(idUsuario, username, passLogin);
 
                 return "PrincipalCiudad";
             } else {
 
-                error = "Nombre de usuario / contraseña incorrectos";
+                error = -1;
+                username = "";
+                usuario = new Usuario();
                 this.sesion = false;
                 return "LoginRegistro";
             }
@@ -141,7 +145,9 @@ public class LoginRegistroBean {
             boolean existUserName = usuarioFacade.existUserName(username);
 
             if (existUserName) {
-                error = "Nombre de usuario en uso";
+                error = -2;
+                username = "";
+                usuario = new Usuario();
                 return "LoginRegistro";
                 //añadir mensaje de error
 
@@ -150,7 +156,7 @@ public class LoginRegistroBean {
                 if (passRegister1.equals(passRegister2)) {
 
                     this.sesion = true;
-
+                    error = 0;
                     usuario = new Usuario();
                     usuario.setNombreUsuario(username);
                     String passHuella = MD5Signature.generateMD5Signature(passRegister1);
@@ -159,20 +165,20 @@ public class LoginRegistroBean {
                     return "PrincipalCiudad";
 
                 } else {
-                    
-                    error = "Las contraseñas no coinciden";
+
+                    error = 0;
+                    username = "";
+                    usuario = new Usuario();
                     this.sesion = false;
                     return "LoginRegistro";
-                    
-                }
 
-                
+                }
 
             }
 
         } else {
 
-            error = "Sesión ya iniciada";
+            //error = "Sesión ya iniciada";
             return "PrincipalCiudad";
 
         }

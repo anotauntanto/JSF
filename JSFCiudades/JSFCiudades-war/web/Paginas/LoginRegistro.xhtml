@@ -22,17 +22,17 @@
     </h:head>
 
     <h:body>
-        
+
         <h:outputText class="position" value="#{msg['Idioma']}" /><br></br><br></br>
-<h:form class="position">
-	
-    
-    <h:commandButton action="#{language.changeLanguage('en')}" value="Ingles" image="../resources/images/gb_images.png"></h:commandButton>
-    <h:outputLabel value="     "/>
-    <h:commandButton action="#{language.changeLanguage('es')}" value="Espanol" image="../resources/images/es_images.png"></h:commandButton>
-    
-			
-      </h:form>
+        <h:form class="position">
+
+
+            <h:commandButton style="width: 25px" action="#{language.changeLanguage('en')}" value="Ingles" image="../resources/images/gb_images.png"></h:commandButton>
+            <h:outputLabel value="     "/>
+            <h:commandButton style="width: 25px" action="#{language.changeLanguage('es')}" value="Espanol" image="../resources/images/es_images.png"></h:commandButton>
+
+
+        </h:form>
         <div class="pen-title"></div>
         <div class="rerun"></div>
 
@@ -57,13 +57,17 @@
                         <h:inputSecret id="pass" required="true" value="#{loginRegistroBean.passLogin}"/>
                         <h:outputLabel for="pass" value="#{msg['Clave']}"></h:outputLabel>
                         <div class="bar"></div>
-
                     </div>
 
+
                     <div class="button-container">
-                        <button jsf:action="#{loginRegistroBean.doLogin}">
-                        <h:outputText value="#{msg['Iniciar']}" />
+                        <button class="button-container" jsf:action="#{loginRegistroBean.doLogin}">
+                            <h:outputText value="#{msg['Iniciar']}" />
                         </button>
+                    </div>
+
+                    <div class="input-container">
+                        <h:outputLabel style="color:red; font-size: small; " value="#{messagesError.errorUsuario}" rendered="#{loginRegistroBean.error == -1}"/>
                     </div>
 
 
@@ -92,7 +96,7 @@
 
                     <div class="input-container">
 
-                        <h:inputSecret id="pass1" required="true" value="#{loginRegistroBean.passRegister1}" onmouseup="comprobarSeguridad();"/>
+                        <h:inputSecret id="pass1" required="true" value="#{loginRegistroBean.passRegister1}" onkeyup="comprobarSeguridad();"/>
                         <h:outputLabel for="pass1" value="#{msg['Clave']}"></h:outputLabel>
                         <span id="mensaje2" class="mensaje"></span>
                         <div class="bar"></div>
@@ -101,7 +105,7 @@
 
                     <div class="input-container">
 
-                        <h:inputSecret id="pass2" required="true" value="#{loginRegistroBean.passRegister2}" onmouseup="comprobarCoinciden();"/>
+                        <h:inputSecret id="pass2" required="true" value="#{loginRegistroBean.passRegister2}" onkeyup="comprobarCoinciden();"/>
                         <h:outputLabel for="pass2" value="#{msg['Clave2']}"></h:outputLabel>
                         <span id="mensaje3" class ="mensaje"></span>
                         <div class="bar"></div>
@@ -109,10 +113,14 @@
 
                     <div class="button-container">
                         <button jsf:action="#{loginRegistroBean.doRegister}">
-                        <h:outputText value="#{msg['Registrar']}" />
+                            <h:outputText value="#{msg['Registrar']}" />
                         </button>
                     </div>
 
+                    <div class="input-container">
+                        <h:outputLabel style="color:red; font-size: small; " value="#{messagesError.errorUsername}" rendered="#{loginRegistroBean.error == -2}"/>
+                    </div>
+                    
                 </h:form>
 
             </div>
