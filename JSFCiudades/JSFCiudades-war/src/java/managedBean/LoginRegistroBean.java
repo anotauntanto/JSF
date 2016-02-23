@@ -41,7 +41,7 @@ public class LoginRegistroBean {
      */
     public LoginRegistroBean() {
         sesion = false;
-        error = "";
+        usuario = new Usuario();
     }
 
     public String getUsername() {
