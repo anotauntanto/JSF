@@ -32,8 +32,16 @@
             <h:outputText value="Asistentes: #{comentariosEventoBean.obtenerAsistentes(comentariosEventoBean.evento)}"/>
         </fieldset>
     </article>
+    
+<h:outputText class="ciudad" value="Comentarios: " rendered="#{comentariosEventoBean.evento.comentarioEventoCollection.size() !=0 }"/>
 
     <article class="box post">
+        <div>
+        <br></br>
+        <h:outputText value="No hay comentarios a este evento" rendered="#{comentariosEventoBean.evento.comentarioEventoCollection.size() ==0 }"/>
+        </div>
+        
+        
 
         <h:dataTable value="#{comentariosEventoBean.evento.comentarioEventoCollection}" var="comentario">
 

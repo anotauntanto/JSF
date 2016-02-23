@@ -38,12 +38,12 @@ public class EventoFacade extends AbstractFacade<Evento> {
 
     public List<Evento> getListaProximosEventosByCity(Ciudad ciudad, int numeroEventos) {
         Query q = em.createQuery("SELECT e FROM Evento e WHERE e.idCiudad.idCiudad=:idCiudad ORDER BY e.fecha");
-        q.setParameter("idCiudad", ciudad.getIdCiudad());  
+        q.setParameter("idCiudad", ciudad.getIdCiudad());
         List<Evento> listaEvento = q.getResultList();
         Date midate = new Date();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(midate);
-        calendar.add(Calendar.DAY_OF_YEAR,-1); //REsto un dia para ver los eventos de hoy
+        calendar.add(Calendar.DAY_OF_YEAR, -1); //REsto un dia para ver los eventos de hoy
         midate = calendar.getTime();
         if (numeroEventos != 0) {
             int i = 0;
@@ -63,12 +63,22 @@ public class EventoFacade extends AbstractFacade<Evento> {
 
         //return listaEvento;
     }
-    
-        public int getNumEventosCreadosByUsuario(Usuario usuario) {
+
+    public int getNumEventosCreadosByUsuario(Usuario usuario) {
 
         Query q = em.createQuery("select e from Evento e where e.idUsuario.idUsuario=:idUsuario");
         q.setParameter("idUsuario", usuario.getIdUsuario());
         return q.getResultList().size();
 
+    }
+
+    
+    @Override
+   public List<Evento> findRange(int[] range) {
+
+       Query q = em.createQuery("SELECT e FROM Evento e ORDER BY e.fecha");
+        q.setMaxResults(range[1] - range[0] + 1);
+        q.setFirstResult(range[0]);
+        return q.getResultList();
     }
 }
