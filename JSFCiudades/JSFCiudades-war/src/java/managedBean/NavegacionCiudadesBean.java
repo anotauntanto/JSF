@@ -38,6 +38,8 @@ public class NavegacionCiudadesBean {
     protected int total;
     protected int indice;
     final protected int tamPag = 2;
+    
+    protected boolean afterBusqueda;
 
     protected int id = 0;
 
@@ -62,6 +64,7 @@ public class NavegacionCiudadesBean {
         listaCiudades = ciudadFacade.findRange(num);
         total = ciudadFacade.count();
         this.indice = 0;
+        afterBusqueda = false;
 
     }
 
@@ -97,6 +100,15 @@ public class NavegacionCiudadesBean {
         this.ciudadBean = ciudadBean;
     }
 
+    public boolean isAfterBusqueda() {
+        return afterBusqueda;
+    }
+
+    public void setAfterBusqueda(boolean afterBusqueda) {
+        this.afterBusqueda = afterBusqueda;
+    }
+
+    
     public StreamedContent getFotoCiudad() {
         
         FacesContext context = FacesContext.getCurrentInstance();
@@ -140,4 +152,14 @@ public class NavegacionCiudadesBean {
         return "PrincipalCiudad";
     }
 
+     public String doListar() {
+        /*int[] num = {0, tamPag};
+        listaCiudades = ciudadFacade.findRange(num);
+        total = ciudadFacade.count();
+        this.indice = 0;
+        afterBusqueda = false;*/
+         
+        init();
+        return "ListarCiudades";
+    }
 }

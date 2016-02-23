@@ -39,13 +39,15 @@
             </h:panelGroup>
 
             <li>
-                <h:link outcome="ListarCiudades">
+                <!-- <h:link outcome="ListarCiudades">-->
+                <h:form>
+                    <h:commandLink action="#{navegacionCiudadesBean.doListar()}">
+                        <h:outputText class="icon-bubble"/>
+                        <br/>
+                        <h:outputText value="Listar ciudades" class="title"/>
 
-                    <h:outputText class="icon-bubble"/>
-                    <br/>
-                    <h:outputText value="Listar ciudades" class="title"/>
-
-                </h:link>
+                    </h:commandLink>
+                </h:form>
 
             </li>
 

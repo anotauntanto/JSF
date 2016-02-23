@@ -106,9 +106,11 @@ public class ComentariosEventoBean {
 
     }
 
-    public String doVerMapa(Evento evento) throws UnsupportedEncodingException, MalformedURLException {
+    public String doVerMapa() throws UnsupportedEncodingException, MalformedURLException {
+        //this.evento = evento;
+        //System.out.println("EVENTOCojones: "+ evento.getNombreEvento());
         Geocoding ObjGeocod = new Geocoding();
-        resultadoCD = ObjGeocod.getCoordinates(evento.getIdCiudad().getNombreCiudad()+ ", " + evento.getDireccion());
+        resultadoCD = ObjGeocod.getCoordinates(this.evento.getIdCiudad().getNombreCiudad()+ ", " + this.evento.getDireccion());
         //resultadoCD = ObjGeocod.getCoordinates("Sevilla, España, C/ Virgen de Lujan, 8");
         //System.out.println("Coordenadas: " + resultadoCD.x + " " + resultadoCD.y);
 
@@ -120,4 +122,12 @@ public class ComentariosEventoBean {
         this.evento = evento;
         return "ListadoEventoCiudad";
     }
+    
+    public String doMostrarEvento(Evento evento) {
+        this.evento = evento;
+        ciudadBean.evento = evento;
+        return "ListadoEventoCiudad";
+    }
+    
+    
 }

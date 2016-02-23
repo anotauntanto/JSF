@@ -44,11 +44,10 @@ public class NavegacionEventosBean {
     @PostConstruct
     public void init() {
 
-            int[] num = {0, tamPag};
-            listaEventos = eventoFacade.findRange(num);
-            total = eventoFacade.count();
-            this.indice = 0;
-    
+        int[] num = {0, tamPag};
+        listaEventos = eventoFacade.findRange(num);
+        total = eventoFacade.count();
+        this.indice = 0;
 
         System.out.println("Total: " + total);
     }
@@ -102,8 +101,13 @@ public class NavegacionEventosBean {
     }
 
     public String doMostrarCiudad(Ciudad ciudad) {
-        this.ciudad= ciudad;
+        this.ciudad = ciudad;
         return "PrincipalCiudad";
+    }
+
+    public String doMostrarEvento(Evento evento) {
+        this.evento = evento;
+        return "ListadoEventoCiudad";
     }
 
 }

@@ -6,6 +6,7 @@
 package JSFCiudades.ejb;
 
 import JSFCiudades.entity.Ciudad;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -47,4 +48,18 @@ public class CiudadFacade extends AbstractFacade<Ciudad> {
         }
     }
 
+        public List<Ciudad> getListaCiudadesSearch(String cadena) {
+
+        
+       String descripcion="%"+cadena+"%";
+        
+       Query q=em.createQuery("SELECT c FROM Ciudad c WHERE c.descripcion LIKE :descripcion");
+       q.setParameter("descripcion", descripcion);
+       
+       List<Ciudad> listaCiudadSearch=q.getResultList();
+       //this.setTotalSearch(listaCiudadSearch.size());
+       
+       
+       return listaCiudadSearch;
+    }
 }

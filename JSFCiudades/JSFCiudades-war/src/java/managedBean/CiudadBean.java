@@ -68,6 +68,7 @@ public class CiudadBean {
     protected List<Pregunta> listaPreguntas;
     protected List<Evento> listaEventos;
     protected List<ComentarioPregunta> listaComentarioPreguntas;
+    protected List<Evento> listaProximosEventos;
 
 
     /**
@@ -81,6 +82,7 @@ public class CiudadBean {
     public void init() {
         listaPreguntas = new ArrayList();
         listaEventos = new ArrayList();
+        listaProximosEventos = new ArrayList();
         listaComentarioPreguntas = new ArrayList();
         this.ciudad = ciudadFacade.getCiudad(0);
   
@@ -182,6 +184,16 @@ public class CiudadBean {
     public void setListaComentarioPreguntas(List<ComentarioPregunta> listaComentarioPreguntas) {
         this.listaComentarioPreguntas = listaComentarioPreguntas;
     }
+
+    public List<Evento> getListaProximosEventos() {
+        listaProximosEventos = eventoFacade.getListaProximosEventosByCity(ciudad, 4);
+        return listaProximosEventos;
+    }
+
+    public void setListaProximosEventos(List<Evento> listaProximosEventos) {
+        this.listaProximosEventos = listaProximosEventos;
+    }
+    
     
     
 

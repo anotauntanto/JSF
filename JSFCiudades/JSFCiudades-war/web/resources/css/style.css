@@ -221,6 +221,7 @@ input[type="text"]:focus {
 }
 .calendar .days li.next, .calendar .days li.previous {
     color: rgba(0, 0, 0, 0.2);
+    
 }
 
 .nav a {

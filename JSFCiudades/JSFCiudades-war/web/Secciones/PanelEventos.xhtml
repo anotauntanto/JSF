@@ -11,9 +11,9 @@
             </div>
             <p><h:outputText value="#{ciudadBean.ciudad.nombreCiudad}"/></p>
         </header>
-        <article class="days">
-            <h:dataTable value="#{ciudadBean.ciudad.eventoCollection}" var="evento">
-                <h:column>
+        <article class="days" >
+            <h:dataTable value="#{ciudadBean.listaProximosEventos}" var="evento" width="100%">
+                <h:column >
                     <br></br>
                     <h:form>
                         <h:commandLink  action="#{ciudadBean.doMostrarEventos(evento)}" value="#{evento.nombreEvento}"/>
