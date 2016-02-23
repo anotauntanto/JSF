@@ -38,6 +38,8 @@ public class InsertarHilosBean {
 
     protected Pregunta pregunta;
     protected Evento evento;
+    
+    protected String error = "Debe escribir algo";
 
     @ManagedProperty(value = "#{ciudadBean}")
     protected CiudadBean ciudadBean;
@@ -89,6 +91,16 @@ public class InsertarHilosBean {
     public void setLoginRegistroBean(LoginRegistroBean loginRegistroBean) {
         this.loginRegistroBean = loginRegistroBean;
     }
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
+    
+    
 
     public String doGuardarPregunta() {
 
