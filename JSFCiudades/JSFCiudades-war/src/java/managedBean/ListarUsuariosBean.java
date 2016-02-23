@@ -81,7 +81,7 @@ public class ListarUsuariosBean {
     public String doDelete(Usuario usuario) {
         usuarioFacade.bloquearUsuario(usuario);
         listaUsuarios = usuarioFacade.findAll();
-        return "ConfiguracionListarUsuarios";
+        return "ConfiguracionInsertarCiudad";
     }
     
     public boolean isBloqueado(Usuario usuario){

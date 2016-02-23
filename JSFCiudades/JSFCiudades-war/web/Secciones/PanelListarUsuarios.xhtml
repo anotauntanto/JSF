@@ -34,6 +34,7 @@
 
                 <p:commandButton value="Bloquear" update="message" action="#{listarUsuariosBean.doDelete(usuario)}">
                     <p:confirm header="Confirmation" message="Desea bloquear a #{usuario.nombreUsuario}?" icon="ui-icon-alert"/>
+                    
                 </p:commandButton>
 
                 <p:confirmDialog  global="true" showEffect="fade" hideEffect="fade">
