@@ -33,7 +33,8 @@ public class UsuarioEventoFacade extends AbstractFacade<UsuarioEvento> {
     }
 
     public int obtenerAsistentes(Evento evento) {
-        Query q = em.createQuery("SELECT ue FROM UsuarioEvento ue WHERE ue.idEvento.idEvento = ?1").setParameter(1, evento.getIdEvento());
+        Query q = em.createQuery("SELECT ue FROM UsuarioEvento ue WHERE ue.idEvento.idEvento = :idEvento");
+        q.setParameter("idEvento", evento.getIdEvento());
 
         //(int) q.getSingleResult();
         return q.getResultList().size();
@@ -42,12 +43,12 @@ public class UsuarioEventoFacade extends AbstractFacade<UsuarioEvento> {
 
     public boolean exitsUsuarioEvento(Evento evento, int idUsuario) {
 
-        Query q = em.createQuery("SELECT ue FROM UsuarioEvento ue WHERE ue.idEvento.idEvento = ?1 AND ue.idUsuario.idUsuario = ?2", UsuarioEvento.class);
+        Query q = em.createQuery("SELECT ue FROM UsuarioEvento ue WHERE ue.idEvento.idEvento = :idEvento AND ue.idUsuario.idUsuario = :idUsuario");
 
-        q.setParameter(1, evento.getIdEvento());
-        q.setParameter(2, idUsuario);
+        q.setParameter("idEvento", evento.getIdEvento());
+        q.setParameter("idUsuario", idUsuario);
 
-        //(int) q.getSingleResult();
+       
         if (q.getResultList().isEmpty()) {
 
             return false;
@@ -67,6 +68,15 @@ public class UsuarioEventoFacade extends AbstractFacade<UsuarioEvento> {
         ue.setIdUsuario(u);
 
         create(ue);
+
+    }
+
+    public int obtenerNumEventosAsist(Usuario usuario) {
+        Query q = em.createQuery("SELECT ue FROM UsuarioEvento ue WHERE ue.idUsuario.idUsuario =:idUsuario");
+        q.setParameter("idUsuario", usuario.getIdUsuario());
+
+        
+        return q.getResultList().size();
 
     }
 

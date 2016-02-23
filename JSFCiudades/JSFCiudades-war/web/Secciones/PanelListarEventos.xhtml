@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">  
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">  
 
     <!-- Para cada evento -->
     <h:dataTable value="#{navegacionEventosBean.listaEventos}" var="evento" width="100%" >
@@ -13,24 +14,37 @@
 
                 <fieldset class="hilos">
                     <div class="details">
-                        <h:form>
-                        <h2> 
-                            <h:commandLink action="#{comentariosEventoBean.doMostrarEvento(evento)}" class="inicio"> #{evento.nombreEvento}</h:commandLink> <br></br>
+                        <div class="col_3of4 details">
+                            <h:form>
+                                <h2> 
+                                    <h:commandLink action="#{comentariosEventoBean.doMostrarEvento(evento)}" class="inicio"> #{evento.nombreEvento}</h:commandLink> <br></br>
 
-                            <br></br>
-                             Fecha: <h:outputText value="#{evento.fecha}">
-                            <f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
-                        </h:outputText>
-                        </h2>
-                        <br></br>
-                        Ciudad: 
-                        
-                            <h:commandLink action="#{navegacionEventosBean.doMostrarCiudad(evento.idCiudad)}" class="inicio"> #{evento.idCiudad.nombreCiudad} </h:commandLink> <br></br>
-                        
-                        Dirección: #{evento.direccion}<br></br>
-                        <p class="letraciudad">#{evento.descripcion}</p>
-                        </h:form>
+                                    <br></br>
+                                    Fecha: <h:outputText value="#{evento.fecha}">
+                                        <f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
+                                    </h:outputText>
+                                </h2>
+                                <br></br>
+                                Ciudad: 
+
+                                <h:commandLink action="#{navegacionEventosBean.doMostrarCiudad(evento.idCiudad)}" class="inicio"> #{evento.idCiudad.nombreCiudad} </h:commandLink> <br></br>
+
+       
+                            </h:form>
+                        </div>
+
+                        <div class="col_1of4 image" align="right">
+                            <h:graphicImage value="../resources/images/icono_evento.png" width="125" height="125" class="bordeImagen" />
+
+                        </div>
+                        <div class="col_1of1 details">
+                        Dirección: #{evento.direccion}<br></br><br></br>
+                        Descripción: 
+                        <div class="letraciudad" >#{evento.descripcion}</div>
+                                
+                        </div>        
                     </div>
+                    
                 </fieldset>    
             </article>
 

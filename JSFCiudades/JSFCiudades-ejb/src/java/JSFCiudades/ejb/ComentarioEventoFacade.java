@@ -6,9 +6,11 @@
 package JSFCiudades.ejb;
 
 import JSFCiudades.entity.ComentarioEvento;
+import JSFCiudades.entity.Usuario;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -29,4 +31,11 @@ public class ComentarioEventoFacade extends AbstractFacade<ComentarioEvento> {
         super(ComentarioEvento.class);
     }
 
+    public int getNumComentariosEventoByUsuario(Usuario usuario) {
+
+        Query q = em.createQuery("select ce from ComentarioEvento ce where ce.idUsuario.idUsuario=:idUsuario");
+        q.setParameter("idUsuario", usuario.getIdUsuario());
+        return q.getResultList().size();
+
+    }
 }

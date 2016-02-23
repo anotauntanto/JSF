@@ -7,6 +7,7 @@ package JSFCiudades.ejb;
 
 import JSFCiudades.entity.Ciudad;
 import JSFCiudades.entity.Pregunta;
+import JSFCiudades.entity.Usuario;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -19,6 +20,7 @@ import javax.persistence.Query;
  */
 @Stateless
 public class PreguntaFacade extends AbstractFacade<Pregunta> {
+
     @PersistenceContext(unitName = "JSFCiudades-ejbPU")
     private EntityManager em;
 
@@ -30,12 +32,21 @@ public class PreguntaFacade extends AbstractFacade<Pregunta> {
     public PreguntaFacade() {
         super(Pregunta.class);
     }
-    
-    public List<Pregunta> getPreguntasByCity (Integer idCity) {
-        
+
+    public List<Pregunta> getPreguntasByCity(Integer idCity) {
+
         Query q = em.createQuery("select p from Pregunta p where p.idCiudad.idCiudad=:idCiudad");
-        q.setParameter("idCiudad", idCity);        
+        q.setParameter("idCiudad", idCity);
         return q.getResultList();
-        
+
     }
+
+    public int getNumPreguntasCreadasByUsuario(Usuario usuario) {
+
+        Query q = em.createQuery("select p from Pregunta p where p.idUsuario.idUsuario=:idUsuario");
+        q.setParameter("idUsuario", usuario.getIdUsuario());
+        return q.getResultList().size();
+
+    }
+    
 }

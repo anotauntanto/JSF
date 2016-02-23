@@ -12,6 +12,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 
@@ -34,6 +35,9 @@ public class NavegacionEventosBean {
 
     protected Evento evento;
     protected Ciudad ciudad;
+    
+    @ManagedProperty(value="#{ciudadBean}")
+    protected CiudadBean ciudadBean;
 
     /**
      * Creates a new instance of NavegacionCiudadesBean
@@ -76,6 +80,14 @@ public class NavegacionEventosBean {
         this.indice = indice;
     }
 
+    public CiudadBean getCiudadBean() {
+        return ciudadBean;
+    }
+
+    public void setCiudadBean(CiudadBean ciudadBean) {
+        this.ciudadBean = ciudadBean;
+    }
+
     public String doAnterior() {
 
         if (indice != 0) {
@@ -101,11 +113,13 @@ public class NavegacionEventosBean {
     }
 
     public String doMostrarCiudad(Ciudad ciudad) {
+        ciudadBean.ciudad = ciudad;
         this.ciudad = ciudad;
         return "PrincipalCiudad";
     }
 
     public String doMostrarEvento(Evento evento) {
+        ciudadBean.evento = evento;
         this.evento = evento;
         return "ListadoEventoCiudad";
     }

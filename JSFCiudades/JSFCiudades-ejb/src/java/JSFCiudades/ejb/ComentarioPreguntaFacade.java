@@ -6,6 +6,7 @@
 package JSFCiudades.ejb;
 
 import JSFCiudades.entity.ComentarioPregunta;
+import JSFCiudades.entity.Usuario;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -36,6 +37,14 @@ public class ComentarioPreguntaFacade extends AbstractFacade<ComentarioPregunta>
         Query q = em.createQuery("select p from ComentarioPregunta p where p.idPregunta.idPregunta=:idPregunta");
         q.setParameter("idPregunta", idQuestion);
         return q.getResultList();
+
+    }
+
+    public int getNumComentariosPreguntaByUsuario(Usuario usuario) {
+
+        Query q = em.createQuery("select cp from ComentarioPregunta cp where cp.idUsuario.idUsuario=:idUsuario");
+        q.setParameter("idUsuario", usuario.getIdUsuario());
+        return q.getResultList().size();
 
     }
 }
