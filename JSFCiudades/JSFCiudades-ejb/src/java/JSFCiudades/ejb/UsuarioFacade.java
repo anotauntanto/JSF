@@ -19,6 +19,7 @@ import javax.persistence.Query;
  */
 @Stateless
 public class UsuarioFacade extends AbstractFacade<Usuario> {
+
     @PersistenceContext(unitName = "JSFCiudades-ejbPU")
     private EntityManager em;
 
@@ -30,14 +31,15 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
     public UsuarioFacade() {
         super(Usuario.class);
     }
-    
-        public int isLoginOK (String username, String password) {
+
+    public int isLoginOK(String username, String password) {
 
         Usuario u;
         int id = 0;
-        
+
         try {
-            Query q = em.createQuery("SELECT u FROM Usuario u WHERE u.nombreUsuario = ?1", Usuario.class).setParameter(1, username);
+            Query q = em.createQuery("SELECT u FROM Usuario u WHERE u.nombreUsuario = :UserName");
+            q.setParameter("UserName",username);
             u = (Usuario) q.getSingleResult();
 
             String huella = MD5Signature.generateMD5Signature(password);
@@ -52,16 +54,17 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
         return id;
 
     }
-    
+
     public boolean existUserName(String username) {
 
         boolean existe = false;
         Usuario u;
 
         try {
-            Query q = em.createQuery("SELECT u FROM Usuario u WHERE u.nombreUsuario = ?1", Usuario.class).setParameter(1, username);
+            Query q = em.createQuery("SELECT u FROM Usuario u WHERE u.nombreUsuario = :UserName");
+            q.setParameter("UserName",username);
             u = (Usuario) q.getSingleResult();
-            existe=true;
+            existe = true;
 
         } catch (NoResultException e) {
             existe = false;
@@ -70,5 +73,16 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
         return existe;
 
     }
+
+    public void bloquearUsuario(Usuario usuario) {
+
+        usuario.setContrasena("0");
+
+        edit(usuario);
+    }
     
+    public boolean isBloqueado(Usuario usuario){
+        return usuario.getContrasena().equals("0");
+    }
+
 }

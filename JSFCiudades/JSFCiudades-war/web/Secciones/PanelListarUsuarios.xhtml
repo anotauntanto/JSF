@@ -1,20 +1,38 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <br></br>
+    <div class="ciudad"> Listado de usuarios </div><br></br>
 
-    <div class="ciudad"> Listado de usuarios </div>
-    
-    <h:dataTable value="#{listarUsuariosBean.listaUsuarios}" var="usuario">
-        <h:column>
-            
-            <fieldset class="hilos">
-                 Nombre: #{usuario.nombreUsuario} <br></br>
-                ----
-            </fieldset>
-            
-        </h:column>
-                   
-    </h:dataTable>
+    <p:dataTable value="#{listarUsuariosBean.listaUsuarios}" var="usuario">
+        
+        <p:column headerText="Nombre">
+            <h:outputText value="#{usuario.nombreUsuario}"/>
+        </p:column>
+        
+        <p:column headerText="Hilos">
+            <h:outputText value="#{listarUsuariosBean.hilosCreados(usuario)}"/>
+        </p:column>
+        
+        <p:column headerText="Comentarios">
+            <h:outputText value="#{listarUsuariosBean.mensajesEscritos(usuario)}"/>
+        </p:column>
+        
+          <p:column headerText="E. Asistidos">
+            <h:outputText value="#{listarUsuariosBean.eventosAsistidos(usuario)}"/>
+        </p:column>
+        
+        <p:column headerText="Usuario">
+            <h:form rendered="#{listarUsuariosBean.isBloqueado(usuario) == false}">
+                <h:commandButton action="#{listarUsuariosBean.doDelete(usuario)}" value="Boquear" rendered="#{usuario.idUsuario != 1}"/>
+            </h:form>
+            <h:outputText value="Bloqueado" rendered="#{listarUsuariosBean.isBloqueado(usuario) == true}"/>
+        </p:column>
+
+
+    </p:dataTable>
 </html>
 

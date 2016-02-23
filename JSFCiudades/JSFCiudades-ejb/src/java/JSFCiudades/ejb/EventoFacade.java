@@ -7,6 +7,7 @@ package JSFCiudades.ejb;
 
 import JSFCiudades.entity.Ciudad;
 import JSFCiudades.entity.Evento;
+import JSFCiudades.entity.Usuario;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -62,5 +63,12 @@ public class EventoFacade extends AbstractFacade<Evento> {
 
         //return listaEvento;
     }
+    
+        public int getNumEventosCreadosByUsuario(Usuario usuario) {
 
+        Query q = em.createQuery("select e from Evento e where e.idUsuario.idUsuario=:idUsuario");
+        q.setParameter("idUsuario", usuario.getIdUsuario());
+        return q.getResultList().size();
+
+    }
 }

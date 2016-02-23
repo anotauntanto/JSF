@@ -12,8 +12,9 @@
             <p><h:outputText value="#{ciudadBean.ciudad.nombreCiudad}"/></p>
         </header>
         <article class="days" >
+            <h:outputText value="No hay Eventos próximos"   rendered="#{ciudadBean.listaProximosEventos.size()==0}"  />
             <h:dataTable value="#{ciudadBean.listaProximosEventos}" var="evento" width="100%">
-                <h:column >
+                <h:column>
                     <br></br>
                     <h:form>
                         <h:commandLink  action="#{ciudadBean.doMostrarEventos(evento)}" value="#{evento.nombreEvento}"/>
@@ -24,8 +25,11 @@
                         </h:outputText>
                         <br></br>
                         ---
+                         
+                        
                     </h:form>
 
+                   
                 </h:column>
             </h:dataTable>
 
