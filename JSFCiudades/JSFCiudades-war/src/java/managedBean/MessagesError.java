@@ -17,7 +17,8 @@ import javax.faces.bean.ManagedBean;
 public class MessagesError implements Serializable{
     
     private String errorCadenaVacia = "Debe introducir algún texto...";
-    private String error2;
+    private String errorUsuario = "Nombre de usuario / contraseña incorrectos\n";
+    private String errorUsername = "Nombre de usuario en uso \n";
 
     public String getErrorCadenaVacia() {
         return errorCadenaVacia;
@@ -27,12 +28,20 @@ public class MessagesError implements Serializable{
         this.errorCadenaVacia = error1;
     }
 
-    public String getError2() {
-        return error2;
+    public String getErrorUsuario() {
+        return errorUsuario;
     }
 
-    public void setError2(String error2) {
-        this.error2 = error2;
+    public void setErrorUsuario(String errorUsuario) {
+        this.errorUsuario = errorUsuario;
+    }
+
+    public String getErrorUsername() {
+        return errorUsername;
+    }
+
+    public void setErrorUsername(String errorUsername) {
+        this.errorUsername = errorUsername;
     }
     
     
