@@ -4,48 +4,51 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
-    
-   <SCRIPT LANGUAGE="JavaScript">
-            function Logout()
-            {
-            confirm('Are you sure you wanna logout?');
-                // OR var response = window.confirm('Confirm Test: Continue?');
-                
-                   
-            }
-        </SCRIPT>
-    
     <br></br>
     <div class="ciudad"> Listado de usuarios </div><br></br>
 
+
     <p:dataTable value="#{listarUsuariosBean.listaUsuarios}" var="usuario">
-        
+
         <p:column headerText="Nombre">
             <h:outputText value="#{usuario.nombreUsuario}"/>
         </p:column>
-        
+
         <p:column headerText="Hilos">
             <h:outputText value="#{listarUsuariosBean.hilosCreados(usuario)}"/>
         </p:column>
-        
+
         <p:column headerText="Comentarios">
             <h:outputText value="#{listarUsuariosBean.mensajesEscritos(usuario)}"/>
         </p:column>
-        
-          <p:column headerText="E. Asistidos">
+
+        <p:column headerText="E. Asistidos">
             <h:outputText value="#{listarUsuariosBean.eventosAsistidos(usuario)}"/>
         </p:column>
-        
+
         <p:column headerText="Usuario">
+
             <h:form rendered="#{listarUsuariosBean.isBloqueado(usuario) == false}">
-                <h:commandButton  value="Boquear" rendered="#{usuario.idUsuario != 1}" onclick="Logout()"/>
+                
+                <p:growl id="message" showDetail="true" />
+
+                <p:commandButton value="Bloquear" update="message" action="#{listarUsuariosBean.doDelete(usuario)}">
+                    <p:confirm header="Confirmation" message="Desea bloquear a #{usuario.nombreUsuario}?" icon="ui-icon-alert"/>
+                </p:commandButton>
+
+                <p:confirmDialog  global="true" showEffect="fade" hideEffect="fade">
+                    <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes"  icon="ui-icon-check" />
+                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                </p:confirmDialog>
+                
+
+
+
             </h:form>
             <h:outputText value="Bloqueado" rendered="#{listarUsuariosBean.isBloqueado(usuario) == true}"/>
         </p:column>
 
 
     </p:dataTable>
-    
- 
 </html>
 
