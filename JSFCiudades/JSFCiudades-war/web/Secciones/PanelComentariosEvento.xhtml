@@ -16,7 +16,8 @@
             <div class="campo-clave">Evento: </div> 
             <div class="campo-valor">#{comentariosEventoBean.evento.nombreEvento}</div>
             <div class="campo-clave"> Fecha:</div>
-            <div class="campo-valor">   <h:outputText value="#{comentariosEventoBean.evento.fecha}" >
+            <div class="campo-valor">   
+                <h:outputText value="#{comentariosEventoBean.evento.fecha}" >
                     <f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
                 </h:outputText>
             </div> 
@@ -32,16 +33,16 @@
             <h:outputText value="Asistentes: #{comentariosEventoBean.obtenerAsistentes(comentariosEventoBean.evento)}"/>
         </fieldset>
     </article>
-    
-<h:outputText class="ciudad" value="Comentarios: " rendered="#{comentariosEventoBean.evento.comentarioEventoCollection.size() !=0 }"/>
+
+    <h:outputText class="ciudad" value="Comentarios: " rendered="#{comentariosEventoBean.listaComentariosEventos.size() !=0 }"/>
 
     <article class="box post">
         <div>
-        <br></br>
-        <h:outputText value="No hay comentarios a este evento" rendered="#{comentariosEventoBean.evento.comentarioEventoCollection.size() ==0 }"/>
+            <br></br>
+            <h:outputText value="No hay comentarios a este evento" rendered="#{comentariosEventoBean.listaComentariosEventos.size() ==0 }"/>
         </div>
-        
-        
+
+
 
         <h:dataTable value="#{comentariosEventoBean.listaComentariosEventos}" var="comentario">
 

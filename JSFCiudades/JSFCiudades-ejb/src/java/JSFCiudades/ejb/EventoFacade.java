@@ -61,7 +61,6 @@ public class EventoFacade extends AbstractFacade<Evento> {
             return listaEvento;
         }
 
-        //return listaEvento;
     }
 
     public int getNumEventosCreadosByUsuario(Usuario usuario) {

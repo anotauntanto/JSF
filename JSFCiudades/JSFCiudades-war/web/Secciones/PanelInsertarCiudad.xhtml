@@ -6,33 +6,33 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:form enctype="multipart/form-data">
-        
+
         <h:outputLabel class="ciudad"> Añadir ciudad </h:outputLabel> <br></br><br></br>
         <h:outputLabel> Nombre ciudad </h:outputLabel> <br></br>
-        
+
         <h:inputText id="nombreCiudad" size="20" value="#{insertarCiudadBean.ciudad.nombreCiudad}" validatorMessage="#{messagesError.errorCadenaVacia}">
             <f:validateLength minimum="0"/>
         </h:inputText>
         <h:message for="nombreCiudad"  style="color:red; font-size: small" rendered="#{insertarCiudadBean.ciudad.nombreCiudad.length() != 0}"/>  
         <br></br><br></br> 
-        
-        
+
+
         <h:outputLabel> Descripción </h:outputLabel> <br></br>
-        
+
         <h:inputTextarea id="descripcion" p:placeholder="Escriba descripción" cols="50" rows="20" class="letraTextArea" value="#{insertarCiudadBean.ciudad.descripcion}" validatorMessage="#{messagesError.errorCadenaVacia}"> 
             <f:validateLength minimum="0"/>
         </h:inputTextarea>
         <h:message for="descripcion"  style="color:red; font-size: small" rendered="#{insertarCiudadBean.ciudad.descripcion.length() != 0}"/>  
         <br></br><br></br>
-        
+
         <h:outputLabel> Subir foto </h:outputLabel> <br></br>
-        
+
         <h:inputFile id="file" p:accept="image/*" value="#{insertarCiudadBean.imagePart}" required="true" requiredMessage="Es necesario adjuntar la foto"/>
         <h:message for="file"  style="color:red; font-size: small"/>  
         <br></br><br></br>
-        
+
         <h:commandButton action="#{insertarCiudadBean.doInsertarCiudad()}" value="Guardar" class="btn btn-primary btn-large btn-block"/><br></br><br></br>
     </h:form>
-    
+
 </html>
 

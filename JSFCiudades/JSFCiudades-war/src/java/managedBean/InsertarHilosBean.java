@@ -7,15 +7,8 @@ package managedBean;
 
 import JSFCiudades.ejb.EventoFacade;
 import JSFCiudades.ejb.PreguntaFacade;
-import JSFCiudades.entity.Ciudad;
 import JSFCiudades.entity.Evento;
 import JSFCiudades.entity.Pregunta;
-import JSFCiudades.entity.Usuario;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -55,7 +48,7 @@ public class InsertarHilosBean {
 
     @PostConstruct
     public void init() {
-        //pregunta = preguntaFacade.find(ciudadBean.idPregunta);  
+        
         pregunta = new Pregunta();
         evento = new Evento();
     }

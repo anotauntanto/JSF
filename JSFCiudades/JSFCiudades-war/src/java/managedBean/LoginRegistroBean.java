@@ -149,7 +149,7 @@ public class LoginRegistroBean {
                 username = "";
                 usuario = new Usuario();
                 return "LoginRegistro";
-                //añadir mensaje de error
+                
 
             } else {
 
@@ -178,7 +178,6 @@ public class LoginRegistroBean {
 
         } else {
 
-            //error = "Sesión ya iniciada";
             return "PrincipalCiudad";
 
         }

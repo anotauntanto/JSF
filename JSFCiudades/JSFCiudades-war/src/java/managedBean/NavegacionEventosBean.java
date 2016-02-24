@@ -13,7 +13,6 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 
 /**
@@ -94,7 +93,7 @@ public class NavegacionEventosBean {
             indice -= tamPag + 1;
             int[] num = {indice, indice + tamPag};
             listaEventos = eventoFacade.findRange(num);
-            System.out.println("IndiceAnt: " + indice);
+  
 
         }
         return null;
@@ -106,7 +105,7 @@ public class NavegacionEventosBean {
             indice += tamPag + 1;
             int[] num = {indice, indice + tamPag};
             listaEventos = eventoFacade.findRange(num);
-            System.out.println("IndiceSig: " + indice);
+   
         }
 
         return null;

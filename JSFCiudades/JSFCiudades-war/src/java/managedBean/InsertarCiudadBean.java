@@ -7,7 +7,6 @@ package managedBean;
 
 import JSFCiudades.ejb.CiudadFacade;
 import JSFCiudades.entity.Ciudad;
-import java.awt.Image;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.logging.Level;
@@ -70,7 +69,7 @@ public class InsertarCiudadBean {
 
     
     public String doInsertarCiudad() {
-        System.out.println("FALLO");
+
         try {
             InputStream inputStream = imagePart.getInputStream();
             ciudad.setFoto(IOUtils.toByteArray(inputStream));

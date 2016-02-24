@@ -15,10 +15,8 @@ import JSFCiudades.entity.Usuario;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
 
 /**
  *
@@ -87,22 +85,5 @@ public class ListarUsuariosBean {
     public boolean isBloqueado(Usuario usuario){
         return usuarioFacade.isBloqueado(usuario);
     }
-    
-   /*XHMTL
-                 <p:growl id="message" showDetail="true" />
 
-                <p:commandButton value="Bloquear" update="message" action="#{listarUsuariosBean.doDelete(usuario)}">
-                    <p:confirm header="Confirmation" message="Desea bloquear a #{usuario.nombreUsuario}?" icon="ui-icon-alert"/>
-                    
-                </p:commandButton>
-
-                <p:confirmDialog  global="true" showEffect="fade" hideEffect="fade">
-                    <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes"  icon="ui-icon-check" />
-                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-                </p:confirmDialog>
-    
-    
-    OTRA
-     <p:commandButton value="Bloquear" action="#{listarUsuariosBean.doDelete(usuario)}" rendered="#{usuario.idUsuario != 1}"/>
-    */
 }

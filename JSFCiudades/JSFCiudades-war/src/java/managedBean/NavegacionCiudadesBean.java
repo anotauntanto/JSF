@@ -7,20 +7,15 @@ package managedBean;
 
 import JSFCiudades.ejb.CiudadFacade;
 import JSFCiudades.entity.Ciudad;
-import static com.sun.faces.facelets.util.Path.context;
 import java.io.ByteArrayInputStream;
-import java.util.ArrayList;
-import java.util.Hashtable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.PhaseId;
-import model.ListaCiudadesStreamed;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 

@@ -7,7 +7,6 @@ package managedBean;
 
 import JSFCiudades.ejb.CiudadFacade;
 import JSFCiudades.entity.Ciudad;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -15,7 +14,6 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
 
 /**
  *
@@ -37,8 +35,6 @@ public class BuscarCiudadBean {
     protected String busqueda;
     protected List<String> listaCiudades;
 
-    //protected String txt4;
-    //protected Ciudad ciudad4;
     /**
      * Creates a new instance of BuscarCiudadBean
      */
@@ -86,29 +82,18 @@ public class BuscarCiudadBean {
     }
 
     public String doBuscarNombre() {
-        //int total = ciudadFacade.getListaCiudadesSearch(busqueda).size();
-        //System.out.println("total  PEROSDS");
-        if (busqueda != null) {
-            //String mitxt = new String(txt4.getBytes("UTF-8"), "UTF-8");
-            busqueda = busqueda.replaceAll("Ã±", "ñ");
-            //System.out.println("total CON1E "+ replaceAll);
 
-            //System.out.println("total CON2E "+ txt4);
-            //navegacionCiudadesBean.listaCiudades = ciudadFacade.getCiudad(busqueda);
+        if (busqueda != null) {
+            busqueda = busqueda.replaceAll("Ã±", "ñ");
+
             List<Ciudad> listTemp = ciudadFacade.getCiudad(busqueda);
             if (listTemp.size() != 0) {
                 ciudadBean.ciudad = listTemp.get(0);
             }
 
-            //navegacionCiudadesBean.afterBusqueda = true;
-            //System.out.println("total "+ ciudad.getNombreCiudad());
             busqueda = "";
-            //return "ListarCiudades";
             return "PrincipalCiudad";
 
-            //ciudadFacade.getListaCiudadesSearch(busqueda);
-            //navegacionCiudadesBean.afterBusqueda = true;
-            //System.out.println("total "+ ciudadBean.ciudad.getDescripcion());
         }
 
         return "";
@@ -128,10 +113,10 @@ public class BuscarCiudadBean {
 
     
     public String doBuscarDescripcion() {
-        //int total = ciudadFacade.getListaCiudadesSearch(busqueda).size();
+
         navegacionCiudadesBean.listaCiudades = ciudadFacade.getListaCiudadesSearch(busqueda);
         navegacionCiudadesBean.afterBusqueda = true;
-        //System.out.println("total "+ ciudad.getNombreCiudad());
+
 
         return "ListarCiudades";
     }

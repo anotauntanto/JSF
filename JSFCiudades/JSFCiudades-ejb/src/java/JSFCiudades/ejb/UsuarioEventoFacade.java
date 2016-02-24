@@ -36,7 +36,6 @@ public class UsuarioEventoFacade extends AbstractFacade<UsuarioEvento> {
         Query q = em.createQuery("SELECT ue FROM UsuarioEvento ue WHERE ue.idEvento.idEvento = :idEvento");
         q.setParameter("idEvento", evento.getIdEvento());
 
-        //(int) q.getSingleResult();
         return q.getResultList().size();
 
     }
