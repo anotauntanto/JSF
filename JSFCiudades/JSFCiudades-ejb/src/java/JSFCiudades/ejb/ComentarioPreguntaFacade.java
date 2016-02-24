@@ -34,7 +34,7 @@ public class ComentarioPreguntaFacade extends AbstractFacade<ComentarioPregunta>
 
     public List<ComentarioPregunta> getComentariosByQuestion(Integer idQuestion) {
 
-        Query q = em.createQuery("select p from ComentarioPregunta p where p.idPregunta.idPregunta=:idPregunta");
+        Query q = em.createQuery("select p from ComentarioPregunta p where p.idPregunta.idPregunta=:idPregunta ORDER BY p.idComentario DESC");
         q.setParameter("idPregunta", idQuestion);
         return q.getResultList();
 

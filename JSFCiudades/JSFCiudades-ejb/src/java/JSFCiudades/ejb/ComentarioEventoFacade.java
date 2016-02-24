@@ -42,7 +42,7 @@ public class ComentarioEventoFacade extends AbstractFacade<ComentarioEvento> {
     }
     
     public List<ComentarioEvento> getComentarioByEvento(Evento evento){
-        Query q = em.createQuery("select p from ComentarioEvento p where p.idEvento.idEvento=:idEvento");
+        Query q = em.createQuery("select p from ComentarioEvento p where p.idEvento.idEvento=:idEvento ORDER BY p.idComentario ASC");
         q.setParameter("idEvento", evento.getIdEvento());
         return q.getResultList();
     }
