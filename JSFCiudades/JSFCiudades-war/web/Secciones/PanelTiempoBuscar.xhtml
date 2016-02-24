@@ -8,37 +8,35 @@
 
     <meta charset="UTF-8"></meta>
 
-<section class="box widget weather">
-    <header class="header">
-        <div class="temp">#{ciudadBean.temperatura}&#176; </div>
-        <span class="icon-partlycloudy"></span>
-    </header>
-    <article>
-        <div class="fecha">#{ciudadBean.fecha}</div>
-    </article>
-</section>
+    <section class="box widget weather">
+        <header class="header">
+            <div class="temp">#{ciudadBean.temperatura}&#176; </div>
+            <span class="icon-partlycloudy"></span>
+        </header>
+        <article>
+            <div class="fecha">#{ciudadBean.fecha}</div>
+        </article>
+    </section>
 
-<section class="box widget find">
-    
-    <h:form>
-        <!--<h:inputText p:placeholder="Introduce tu busqueda" value=""/>-->
+    <section class="box widget find">
 
-          <p:autoComplete c:placeholder="Introduce búsqueda" style="position: relative; width:100%" id="acMaxResults" 
-                          value="#{buscarCiudadBean.busqueda}"  completeMethod="#{buscarCiudadBean.completeCiudad}" 
-                          required="true" />
-          <br></br>
-        <h:commandButton action="#{buscarCiudadBean.doBuscarNombre()}" value="Buscar por Nombre" class="btn btn-primary btn-large btn-block"/>
+        <h:form>
+            <p:autoComplete c:placeholder="Introduce búsqueda" style="position: relative; width:100%" id="acMaxResults" 
+                            value="#{buscarCiudadBean.busqueda}"  completeMethod="#{buscarCiudadBean.completeCiudad}" 
+                            required="true" />
+            <br></br>
+            <h:commandButton action="#{buscarCiudadBean.doBuscarNombre()}" value="Buscar por Nombre" class="btn btn-primary btn-large btn-block"/>
 
-    
 
-        <br></br>
-    
-         <h:commandButton action="#{buscarCiudadBean.doBuscarDescripcion()}" value="Buscar por Descripción" class="btn btn-primary btn-large btn-block"/>
-    
-    
-        
-   
-    </h:form>
-</section>
+
+            <br></br>
+
+            <h:commandButton action="#{buscarCiudadBean.doBuscarDescripcion()}" value="Buscar por Descripción" class="btn btn-primary btn-large btn-block"/>
+
+
+
+
+        </h:form>
+    </section>
 </html>
 

@@ -89,4 +89,14 @@ public class CiudadFacade extends AbstractFacade<Ciudad> {
 
         return listaCiudadSearch;
     }
+    
+        public List<String> getListaCiudades() {
+
+
+        Query q = em.createQuery("SELECT distinct c.nombreCiudad FROM Ciudad c");
+
+        List<String> listaCiudadSearch = q.getResultList();
+
+        return listaCiudadSearch;
+    }
 }

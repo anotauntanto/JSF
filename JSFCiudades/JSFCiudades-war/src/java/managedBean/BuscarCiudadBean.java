@@ -35,6 +35,7 @@ public class BuscarCiudadBean {
     protected CiudadBean ciudadBean;
 
     protected String busqueda;
+    protected List<String> listaCiudades;
 
     //protected String txt4;
     //protected Ciudad ciudad4;
@@ -48,6 +49,7 @@ public class BuscarCiudadBean {
     @PostConstruct
     public void init() {
         busqueda = "";
+        listaCiudades = ciudadFacade.getListaCiudades();
 
     }
 
@@ -67,13 +69,20 @@ public class BuscarCiudadBean {
         this.navegacionCiudadesBean = navegacionCiudadesBean;
     }
 
-
     public CiudadBean getCiudadBean() {
         return ciudadBean;
     }
 
     public void setCiudadBean(CiudadBean ciudadBean) {
         this.ciudadBean = ciudadBean;
+    }
+
+    public List<String> getListaCiudades() {
+        return listaCiudades;
+    }
+
+    public void setListaCiudades(List<String> listaCiudades) {
+        this.listaCiudades = listaCiudades;
     }
 
     public String doBuscarNombre() {
@@ -87,10 +96,9 @@ public class BuscarCiudadBean {
             //System.out.println("total CON2E "+ txt4);
             //navegacionCiudadesBean.listaCiudades = ciudadFacade.getCiudad(busqueda);
             List<Ciudad> listTemp = ciudadFacade.getCiudad(busqueda);
-            if (listTemp.size() !=0){
-               ciudadBean.ciudad = listTemp.get(0); 
+            if (listTemp.size() != 0) {
+                ciudadBean.ciudad = listTemp.get(0);
             }
-            
 
             //navegacionCiudadesBean.afterBusqueda = true;
             //System.out.println("total "+ ciudad.getNombreCiudad());
@@ -98,7 +106,7 @@ public class BuscarCiudadBean {
             //return "ListarCiudades";
             return "PrincipalCiudad";
 
-        //ciudadFacade.getListaCiudadesSearch(busqueda);
+            //ciudadFacade.getListaCiudadesSearch(busqueda);
             //navegacionCiudadesBean.afterBusqueda = true;
             //System.out.println("total "+ ciudadBean.ciudad.getDescripcion());
         }
@@ -106,13 +114,18 @@ public class BuscarCiudadBean {
         return "";
     }
 
-
     public List<String> completeCiudad(String query) {
         List<String> results = new ArrayList<String>();
-        List<Ciudad> resultCiudad = ciudadFacade.getListaCiudadesNameSearch(query);
-        for (int i = 0; i < resultCiudad.size(); i++) {
+        //List<Ciudad> resultCiudad = ciudadFacade.getListaCiudadesNameSearch(query);
+        /*for (int i = 0; i < resultCiudad.size(); i++) {
             results.add(resultCiudad.get(i).getNombreCiudad());
             //System.out.println("LISTA NOMBRE "+results.get(i));
+        }*/
+
+        for (String nombreCiudad : this.listaCiudades) {
+            if (nombreCiudad.contains(query)) {
+                results.add(nombreCiudad);
+            }
         }
 
         return results;
