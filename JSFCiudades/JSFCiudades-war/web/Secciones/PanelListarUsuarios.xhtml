@@ -29,20 +29,19 @@
         <p:column headerText="Usuario">
 
             <h:form rendered="#{listarUsuariosBean.isBloqueado(usuario) == false}">
-                
+
                 <p:growl id="message" showDetail="true" />
 
-                <p:commandButton value="Bloquear" update="message" action="#{listarUsuariosBean.doDelete(usuario)}">
+                <p:commandButton value="Bloquear" update="message" action="#{listarUsuariosBean.doDelete(usuario)}" 
+                                 rendered="#{usuario.idUsuario != 1}">
                     <p:confirm header="Confirmation" message="Desea bloquear a #{usuario.nombreUsuario}?" icon="ui-icon-alert"/>
-                    
+
                 </p:commandButton>
 
                 <p:confirmDialog  global="true" showEffect="fade" hideEffect="fade">
                     <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes"  icon="ui-icon-check" />
                     <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                 </p:confirmDialog>
-                
-
 
 
             </h:form>

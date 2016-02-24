@@ -88,5 +88,21 @@ public class ListarUsuariosBean {
         return usuarioFacade.isBloqueado(usuario);
     }
     
-   
+   /*XHMTL
+                 <p:growl id="message" showDetail="true" />
+
+                <p:commandButton value="Bloquear" update="message" action="#{listarUsuariosBean.doDelete(usuario)}">
+                    <p:confirm header="Confirmation" message="Desea bloquear a #{usuario.nombreUsuario}?" icon="ui-icon-alert"/>
+                    
+                </p:commandButton>
+
+                <p:confirmDialog  global="true" showEffect="fade" hideEffect="fade">
+                    <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes"  icon="ui-icon-check" />
+                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                </p:confirmDialog>
+    
+    
+    OTRA
+     <p:commandButton value="Bloquear" action="#{listarUsuariosBean.doDelete(usuario)}" rendered="#{usuario.idUsuario != 1}"/>
+    */
 }

@@ -395,3 +395,15 @@ input[type="text"]:focus {
     color: grey;
     font-size: 0.8em;
 }
+
+.autoComp {
+    z-index: 1; 
+    top: 455px;
+    
+}
+
+#acMaxResults {
+      z-index: 1; 
+    top: 455px;
+    
+}

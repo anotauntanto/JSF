@@ -147,7 +147,7 @@ public class NavegacionCiudadesBean {
     }
 
     public String doMostrarCiudad(Ciudad ciudad) {
-
+     
         ciudadBean.setCiudad(ciudad);
         return "PrincipalCiudad";
     }
