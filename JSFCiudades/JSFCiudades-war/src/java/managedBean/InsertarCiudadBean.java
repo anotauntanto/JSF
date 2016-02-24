@@ -70,16 +70,18 @@ public class InsertarCiudadBean {
 
     
     public String doInsertarCiudad() {
-
+        System.out.println("FALLO");
         try {
             InputStream inputStream = imagePart.getInputStream();
             ciudad.setFoto(IOUtils.toByteArray(inputStream));
         } catch (IOException ex) {
             Logger.getLogger(InsertarCiudadBean.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         ciudadFacade.create(ciudad);
         ciudadBean.ciudad = ciudad;
         ciudad = new Ciudad();
+      
 
         return "";
     }
