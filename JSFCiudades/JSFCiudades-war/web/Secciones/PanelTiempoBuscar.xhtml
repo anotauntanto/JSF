@@ -24,16 +24,16 @@
         <!--<h:inputText p:placeholder="Introduce tu busqueda" value=""/>-->
 
           <p:autoComplete c:placeholder="Introduce búsqueda" style="position: relative; width:100%" id="acMaxResults" 
-                          value="#{buscarCiudadBean.txt4}"  completeMethod="#{buscarCiudadBean.completeText}" 
+                          value="#{buscarCiudadBean.busqueda}"  completeMethod="#{buscarCiudadBean.completeCiudad}" 
                           required="true" />
           <br></br>
-        <h:commandButton action="#{buscarCiudadBean.doBuscar()}" value="Buscar por Nombre" class="btn btn-primary btn-large btn-block"/>
+        <h:commandButton action="#{buscarCiudadBean.doBuscarNombre()}" value="Buscar por Nombre" class="btn btn-primary btn-large btn-block"/>
 
     
 
         <br></br>
     
-         <h:commandButton action="#{buscarCiudadBean.doBuscar2(txt4)}" value="Buscar por Descripción" class="btn btn-primary btn-large btn-block"/>
+         <h:commandButton action="#{buscarCiudadBean.doBuscarDescripcion()}" value="Buscar por Descripción" class="btn btn-primary btn-large btn-block"/>
     
     
         

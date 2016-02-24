@@ -6,7 +6,9 @@
 package JSFCiudades.ejb;
 
 import JSFCiudades.entity.ComentarioEvento;
+import JSFCiudades.entity.Evento;
 import JSFCiudades.entity.Usuario;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -37,5 +39,11 @@ public class ComentarioEventoFacade extends AbstractFacade<ComentarioEvento> {
         q.setParameter("idUsuario", usuario.getIdUsuario());
         return q.getResultList().size();
 
+    }
+    
+    public List<ComentarioEvento> getComentarioByEvento(Evento evento){
+        Query q = em.createQuery("select p from ComentarioEvento p where p.idEvento.idEvento=:idEvento");
+        q.setParameter("idEvento", evento.getIdEvento());
+        return q.getResultList();
     }
 }

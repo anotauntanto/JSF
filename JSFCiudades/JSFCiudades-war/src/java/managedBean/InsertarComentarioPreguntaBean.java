@@ -71,6 +71,7 @@ public class InsertarComentarioPreguntaBean {
         comPregunta.setIdPregunta(ciudadBean.getPregunta());
         comentarioPreguntaFacade.create(comPregunta);
         comPregunta = new ComentarioPregunta();
+       
         return "";
     }
     

@@ -8,10 +8,13 @@ package managedBean;
 import JSFCiudades.ejb.ComentarioEventoFacade;
 import JSFCiudades.ejb.EventoFacade;
 import JSFCiudades.ejb.UsuarioEventoFacade;
+import JSFCiudades.entity.ComentarioEvento;
 import JSFCiudades.entity.Evento;
 import java.awt.geom.Point2D;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -43,7 +46,8 @@ public class ComentariosEventoBean {
     @ManagedProperty(value = "#{loginRegistroBean}")
     protected LoginRegistroBean loginRegistroBean;
 
-
+    protected List<ComentarioEvento> listaComentariosEventos;
+    
     protected boolean verMapa;
 
     protected Point2D.Double resultadoCD;
@@ -58,6 +62,7 @@ public class ComentariosEventoBean {
     public void init() {
         //pregunta = preguntaFacade.find(ciudadBean.idPregunta);  
         evento = ciudadBean.evento;
+        listaComentariosEventos = new ArrayList();
         verMapa = false;
     }
 
@@ -93,6 +98,17 @@ public class ComentariosEventoBean {
         this.loginRegistroBean = loginRegistroBean;
     }
 
+    public List<ComentarioEvento> getListaComentariosEventos() {
+        listaComentariosEventos = comentarioEventoFacade.getComentarioByEvento(this.evento);
+        return listaComentariosEventos;
+    }
+
+    public void setListaComentariosEventos(List<ComentarioEvento> listaComentariosEventos) {
+        this.listaComentariosEventos = listaComentariosEventos;
+    }
+
+    
+    
     public String doAsistir() {
         if (!usuarioEventoFacade.exitsUsuarioEvento(evento, loginRegistroBean.getIdUsuario())) {
             usuarioEventoFacade.insertAsistir(evento, loginRegistroBean.getIdUsuario());
@@ -107,12 +123,10 @@ public class ComentariosEventoBean {
     }
 
     public String doVerMapa() throws UnsupportedEncodingException, MalformedURLException {
-        //this.evento = evento;
-        //System.out.println("EVENTOCojones: "+ evento.getNombreEvento());
+       
         Geocoding ObjGeocod = new Geocoding();
         resultadoCD = ObjGeocod.getCoordinates(this.evento.getIdCiudad().getNombreCiudad()+ ", " + this.evento.getDireccion());
-        //resultadoCD = ObjGeocod.getCoordinates("Sevilla, España, C/ Virgen de Lujan, 8");
-        //System.out.println("Coordenadas: " + resultadoCD.x + " " + resultadoCD.y);
+      
 
         return "VerMapa";
 
@@ -124,8 +138,10 @@ public class ComentariosEventoBean {
     }
     
     public String doMostrarEvento(Evento evento) {
+        ciudadBean.ciudad = evento.getIdCiudad();
         this.evento = evento;
         ciudadBean.evento = evento;
+        
         return "ListadoEventoCiudad";
     }
     

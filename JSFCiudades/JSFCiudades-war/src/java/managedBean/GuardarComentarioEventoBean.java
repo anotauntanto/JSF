@@ -31,6 +31,8 @@ public class GuardarComentarioEventoBean {
     protected CiudadBean ciudadBean;
     @ManagedProperty(value="#{loginRegistroBean}")
     protected LoginRegistroBean loginRegistroBean;
+  
+    
    
    
     /**
@@ -67,14 +69,19 @@ public class GuardarComentarioEventoBean {
     
     
     public String doGuardar(){
+        
         ComentarioEvento ce = new ComentarioEvento();
         ce.setIdUsuario(loginRegistroBean.usuario);
         ce.setTexto(texto);
+        texto="";
         ce.setIdEvento(ciudadBean.evento);
         
         comentarioEventoFacade.create(ce);
         
         return null;
     }
+    
+
+    
     
 }

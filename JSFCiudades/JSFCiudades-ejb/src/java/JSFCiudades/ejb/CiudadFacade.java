@@ -61,17 +61,19 @@ public class CiudadFacade extends AbstractFacade<Ciudad> {
         return listaCiudadSearch;
     }
 
-    public Ciudad getCiudad(String nombreCiudad) {
+    public List<Ciudad> getCiudad(String nombreCiudad) {
 
-        String[] nombre = nombreCiudad.split(",");
-        System.out.println("CiudadCONE " + nombre[0]);
-        Query q = em.createQuery("select c from Ciudad c WHERE c.nombreCiudad = :nombre");
+        //String[] nombre = nombreCiudad.split(",");
+        //System.out.println("CiudadCONE " + nombre[0]);
+        nombreCiudad = "%"+nombreCiudad+"%";
+        Query q = em.createQuery("select c from Ciudad c WHERE c.nombreCiudad LIKE :nombre");
         q.setParameter("nombre", nombreCiudad);
 
-        Ciudad ciudad = (Ciudad) q.getSingleResult();
+        
+        List<Ciudad> listaCiudad = q.getResultList();
 
             //Ciudad ciudad = find(155);
-        return ciudad;
+        return listaCiudad;
 
     }
 

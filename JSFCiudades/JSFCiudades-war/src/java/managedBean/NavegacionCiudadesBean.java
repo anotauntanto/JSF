@@ -153,11 +153,7 @@ public class NavegacionCiudadesBean {
     }
 
      public String doListar() {
-        /*int[] num = {0, tamPag};
-        listaCiudades = ciudadFacade.findRange(num);
-        total = ciudadFacade.count();
-        this.indice = 0;
-        afterBusqueda = false;*/
+
          
         init();
         return "ListarCiudades";

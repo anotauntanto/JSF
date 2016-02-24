@@ -76,7 +76,7 @@ public class EventoFacade extends AbstractFacade<Evento> {
     @Override
    public List<Evento> findRange(int[] range) {
 
-       Query q = em.createQuery("SELECT e FROM Evento e ORDER BY e.fecha");
+       Query q = em.createQuery("SELECT e FROM Evento e ORDER BY e.fecha DESC");
         q.setMaxResults(range[1] - range[0] + 1);
         q.setFirstResult(range[0]);
         return q.getResultList();
