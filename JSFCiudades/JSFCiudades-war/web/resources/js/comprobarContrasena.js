@@ -7,9 +7,9 @@ function comprobarSeguridad()
     var numero = false;
     var simbolo = false;
     //Almacenar la contraseña en una variable
-    var pass1 = document.getElementById('j_idt30:pass1');
+    var pass1 = document.getElementById('Id2:pass1');
     //Almacenar la cadena de la contraseña en una variable
-    var cadena = document.getElementById('j_idt30:pass1').value;
+    var cadena = document.getElementById('Id2:pass1').value;
     //Almacenar el objeto mensaje
     var mensaje = document.getElementById('mensaje2');
     //Establecer los colores que usaremos para el fondo de la contraseña
@@ -60,8 +60,8 @@ function comprobarSeguridad()
 function comprobarCoinciden()
 {
     //Almacenar las contraseñas en variables
-    var pass1 = document.getElementById('j_idt30:pass1');
-    var pass2 = document.getElementById('j_idt30:pass2');
+    var pass1 = document.getElementById('Id2:pass1');
+    var pass2 = document.getElementById('Id2:pass2');
     //Almacenar el objeto mensaje
     var mensaje = document.getElementById('mensaje3');
     //Establecer los colores que usaremos para el fondo de la contraseña

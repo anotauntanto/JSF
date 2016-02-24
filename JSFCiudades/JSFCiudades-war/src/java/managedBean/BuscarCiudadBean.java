@@ -116,11 +116,6 @@ public class BuscarCiudadBean {
 
     public List<String> completeCiudad(String query) {
         List<String> results = new ArrayList<String>();
-        //List<Ciudad> resultCiudad = ciudadFacade.getListaCiudadesNameSearch(query);
-        /*for (int i = 0; i < resultCiudad.size(); i++) {
-            results.add(resultCiudad.get(i).getNombreCiudad());
-            //System.out.println("LISTA NOMBRE "+results.get(i));
-        }*/
 
         for (String nombreCiudad : this.listaCiudades) {
             if (nombreCiudad.contains(query)) {
@@ -131,6 +126,7 @@ public class BuscarCiudadBean {
         return results;
     }
 
+    
     public String doBuscarDescripcion() {
         //int total = ciudadFacade.getListaCiudadesSearch(busqueda).size();
         navegacionCiudadesBean.listaCiudades = ciudadFacade.getListaCiudadesSearch(busqueda);

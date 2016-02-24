@@ -43,11 +43,13 @@
 
                 <h1 class="title" > <h:outputText value="#{msg['Iniciar']}" /></h1>
 
-                <h:form>
+                <h:form >
 
                     <div class="input-container">
                         <h:inputText id="usuario" required="true" value="#{loginRegistroBean.username}"/>
+                        
                         <h:outputLabel for="usuario" value="#{msg['Usuario']}"></h:outputLabel>
+                        
                         <div class="bar"></div>
 
                     </div>
@@ -82,7 +84,7 @@
                     <div class="close"></div>
                 </div>
 
-                <h:form>
+                <h:form id="Id2">
 
                     <div class="input-container">
 

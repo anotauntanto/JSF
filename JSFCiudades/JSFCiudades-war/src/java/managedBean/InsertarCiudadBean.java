@@ -75,7 +75,8 @@ public class InsertarCiudadBean {
             InputStream inputStream = imagePart.getInputStream();
             ciudad.setFoto(IOUtils.toByteArray(inputStream));
         } catch (IOException ex) {
-            Logger.getLogger(InsertarCiudadBean.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(InsertarCiudadBean.class.getName()).
+                    log(Level.SEVERE, null, ex);
         }
         ciudadFacade.create(ciudad);
         ciudadBean.ciudad = ciudad;
