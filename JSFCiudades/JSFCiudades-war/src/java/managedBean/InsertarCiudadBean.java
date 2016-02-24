@@ -70,7 +70,7 @@ public class InsertarCiudadBean {
 
     
     public String doInsertarCiudad() {
-
+        System.out.println("FALLO");
         try {
             InputStream inputStream = imagePart.getInputStream();
             ciudad.setFoto(IOUtils.toByteArray(inputStream));
@@ -78,9 +78,11 @@ public class InsertarCiudadBean {
             Logger.getLogger(InsertarCiudadBean.class.getName()).
                     log(Level.SEVERE, null, ex);
         }
+        
         ciudadFacade.create(ciudad);
         ciudadBean.ciudad = ciudad;
         ciudad = new Ciudad();
+      
 
         return "";
     }

@@ -3,7 +3,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:form enctype="multipart/form-data">
@@ -28,7 +27,7 @@
         
         <h:outputLabel> Subir foto </h:outputLabel> <br></br>
         
-        <h:inputFile id="file" p:accept="image/*" required="true" requiredMessage="Es necesario adjuntar la foto"/>
+        <h:inputFile id="file" p:accept="image/*" value="#{insertarCiudadBean.imagePart}" required="true" requiredMessage="Es necesario adjuntar la foto"/>
         <h:message for="file"  style="color:red; font-size: small"/>  
         <br></br><br></br>
         

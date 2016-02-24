@@ -56,7 +56,7 @@ public class CiudadFacade extends AbstractFacade<Ciudad> {
         q.setParameter("descripcion", descripcion);
 
         List<Ciudad> listaCiudadSearch = q.getResultList();
-       //this.setTotalSearch(listaCiudadSearch.size());
+        //this.setTotalSearch(listaCiudadSearch.size());
 
         return listaCiudadSearch;
     }
@@ -65,14 +65,13 @@ public class CiudadFacade extends AbstractFacade<Ciudad> {
 
         //String[] nombre = nombreCiudad.split(",");
         //System.out.println("CiudadCONE " + nombre[0]);
-        nombreCiudad = "%"+nombreCiudad+"%";
+        nombreCiudad = "%" + nombreCiudad + "%";
         Query q = em.createQuery("select c from Ciudad c WHERE c.nombreCiudad LIKE :nombre");
         q.setParameter("nombre", nombreCiudad);
 
-        
         List<Ciudad> listaCiudad = q.getResultList();
 
-            //Ciudad ciudad = find(155);
+        //Ciudad ciudad = find(155);
         return listaCiudad;
 
     }
@@ -89,14 +88,22 @@ public class CiudadFacade extends AbstractFacade<Ciudad> {
 
         return listaCiudadSearch;
     }
-    
-        public List<String> getListaCiudades() {
 
+    public List<String> getListaCiudades() {
 
         Query q = em.createQuery("SELECT distinct c.nombreCiudad FROM Ciudad c");
 
         List<String> listaCiudadSearch = q.getResultList();
 
         return listaCiudadSearch;
+    }
+
+    @Override
+    public List<Ciudad> findRange(int[] range) {
+
+        Query q = em.createQuery("SELECT c FROM Ciudad c ORDER BY c.idCiudad DESC");
+        q.setMaxResults(range[1] - range[0] + 1);
+        q.setFirstResult(range[0]);
+        return q.getResultList();
     }
 }
