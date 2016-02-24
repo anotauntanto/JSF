@@ -32,7 +32,7 @@ public class CiudadFacade extends AbstractFacade<Ciudad> {
     }
 
     public Ciudad getCiudad(int idCiudad) {
-        
+
         if (idCiudad == 0) {
             int newIdCiudad = 0;
 
@@ -48,51 +48,43 @@ public class CiudadFacade extends AbstractFacade<Ciudad> {
         }
     }
 
-        public List<Ciudad> getListaCiudadesSearch(String cadena) {
+    public List<Ciudad> getListaCiudadesSearch(String cadena) {
 
-        
-       String descripcion="%"+cadena+"%";
-        
-       Query q=em.createQuery("SELECT c FROM Ciudad c WHERE c.descripcion LIKE :descripcion");
-       q.setParameter("descripcion", descripcion);
-       
-       List<Ciudad> listaCiudadSearch=q.getResultList();
+        String descripcion = "%" + cadena + "%";
+
+        Query q = em.createQuery("SELECT c FROM Ciudad c WHERE c.descripcion LIKE :descripcion");
+        q.setParameter("descripcion", descripcion);
+
+        List<Ciudad> listaCiudadSearch = q.getResultList();
        //this.setTotalSearch(listaCiudadSearch.size());
-       
-       
-       return listaCiudadSearch;
-    }
-        
-         public Ciudad getCiudad(String nombreCiudad) {
-             
-        
-            String[] nombre = nombreCiudad.split(",");
-            System.out.println("CiudadCONE "+nombre[0]);
-            Query q = em.createQuery("select c from Ciudad c WHERE c.nombreCiudad = :nombre");
-            q.setParameter("nombre", nombreCiudad);
-           
 
-            Ciudad ciudad = (Ciudad) q.getSingleResult();
-            
+        return listaCiudadSearch;
+    }
+
+    public Ciudad getCiudad(String nombreCiudad) {
+
+        String[] nombre = nombreCiudad.split(",");
+        System.out.println("CiudadCONE " + nombre[0]);
+        Query q = em.createQuery("select c from Ciudad c WHERE c.nombreCiudad = :nombre");
+        q.setParameter("nombre", nombreCiudad);
+
+        Ciudad ciudad = (Ciudad) q.getSingleResult();
+
             //Ciudad ciudad = find(155);
-            
-            return ciudad;
-
+        return ciudad;
 
     }
-         
-       public List<Ciudad> getListaCiudadesNameSearch(String cadena) {
 
-        
-       String name="%"+cadena+"%";
-        
-       Query q=em.createQuery("SELECT c FROM Ciudad c WHERE c.nombreCiudad LIKE :name");
-       q.setParameter("name", name);
-       
-       List<Ciudad> listaCiudadSearch=q.getResultList();
-       System.out.println("LONG: " + listaCiudadSearch.size());
-       
-       
-       return listaCiudadSearch;
+    public List<Ciudad> getListaCiudadesNameSearch(String cadena) {
+
+        String name = "%" + cadena + "%";
+
+        Query q = em.createQuery("SELECT c FROM Ciudad c WHERE c.nombreCiudad LIKE :name");
+        q.setParameter("name", name);
+
+        List<Ciudad> listaCiudadSearch = q.getResultList();
+        System.out.println("LONG: " + listaCiudadSearch.size());
+
+        return listaCiudadSearch;
     }
 }

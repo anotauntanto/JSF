@@ -138,7 +138,6 @@ public class BuscarCiudadBean {
         //int total = ciudadFacade.getListaCiudadesSearch(busqueda).size();
         navegacionCiudadesBean.listaCiudades = ciudadFacade.getListaCiudadesSearch(txt4);
         navegacionCiudadesBean.afterBusqueda = true;
-        
         //System.out.println("total "+ ciudad.getNombreCiudad());
         
         return "ListarCiudades";
