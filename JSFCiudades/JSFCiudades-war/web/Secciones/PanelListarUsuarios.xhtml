@@ -8,7 +8,7 @@
     <div class="ciudad"> Listado de usuarios </div><br></br>
 
 
-    <p:dataTable value="#{listarUsuariosBean.listaUsuarios}" var="usuario">
+    <p:dataTable id="tabla" value="#{listarUsuariosBean.listaUsuarios}" var="usuario">
 
         <p:column headerText="Nombre">
             <h:outputText value="#{usuario.nombreUsuario}"/>
@@ -34,7 +34,8 @@
 
                 <p:commandButton value="Bloquear" update="message" action="#{listarUsuariosBean.doDelete(usuario)}" 
                                  rendered="#{usuario.idUsuario != 1}">
-                    <p:confirm header="Confirmación" message="¿Desea bloquear a #{usuario.nombreUsuario}?" icon="ui-icon-alert"/>
+                    <p:confirm header="Confirmación" message="¿Desea bloquear a #{usuario.nombreUsuario}?" icon="ui-icon-alert"  />
+                    <f:ajax render="tabla" />    
 
                 </p:commandButton>
 

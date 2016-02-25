@@ -53,10 +53,12 @@ public class ListarUsuariosBean {
     @PostConstruct
     public void init() {
         listaUsuarios = usuarioFacade.findAll();
+        System.out.println("Eiii");
     }
 
     public List<Usuario> getListaUsuarios() {
-        return listaUsuarios;
+        //return listaUsuarios;
+        return usuarioFacade.findAll();
     }
 
     public void setListaUsuarios(List<Usuario> listaUsuarios) {
@@ -79,7 +81,7 @@ public class ListarUsuariosBean {
     public String doDelete(Usuario usuario) {
         usuarioFacade.bloquearUsuario(usuario);
         listaUsuarios = usuarioFacade.findAll();
-        return "ConfiguracionInsertarCiudad";
+        return "ConfiguracionListarUsuarios";
     }
     
     public boolean isBloqueado(Usuario usuario){
